@@ -2,7 +2,7 @@
 
 > **Date:** March 15, 2026
 > **Context:** Analysis of whether the CBS News feed prototype approach can consolidate the large number of UI modes currently maintained across CBS Interactive properties
-> **Data Sources:** Ada MCP (content delivery architecture), Feature Catalog MCP (UI mode registry), Nitro Design System (Pluto TV/Paramount), Taboola Feed integration data, CBSNews.com page type audit
+> **Data Sources:** Ada MCP (content delivery architecture), Feature Catalog MCP (UI mode registry), Nitro Design System (Pluto TV/Paramount), Voyage Design System (Paramount+), EyeQ unified stack, Taboola Feed integration data, CBSNews.com page type audit
 
 ---
 
@@ -84,6 +84,22 @@ The 70/30 custom-to-standard ratio creates compounding problems:
 | **Performance variance** | No consistent Core Web Vitals baseline across modes |
 
 Industry data confirms this pattern: enterprise application sprawl averages 897 systems with only 28% integration, and organizations spend $30,000-$40,000 annually per legacy system in maintenance alone.
+
+### Paramount's Existing Consolidation Efforts (Context)
+
+This UI mode sprawl problem exists within a broader Paramount consolidation wave already underway:
+
+| Initiative | Status | Relevance |
+|-----------|--------|-----------|
+| **EyeQ Unified Stack** | Completed (2024) | Merged three separate tech stacks (CBS, Viacom, Pluto TV) into one — took 2 years |
+| **14 Local Station App Merger** | Completed (May 2024) | 14 separate local station apps consolidated into single CBS News app |
+| **Voyage Design System (VDS)** | Active | Paramount+'s unified design system built on atomic design principles, WCAG 2.2 AA compliant |
+| **Nitro Design System** | Active | Pluto TV's component system — 12 designers, ~300 engineers, three-tier token architecture |
+| **Paramount+ / Pluto TV Codebase Unification** | In progress (target: mid-2026) | Consolidating into single unified framework |
+
+The feed-based architecture proposed here is the **logical next step** for the content/editorial layer — the infrastructure (EyeQ) and app shells (local station merger) are already consolidated, but the **page template and UI mode layer remains fragmented**.
+
+Netflix's comparable experience: their Hawkins design system was created to address the same problem across **80+ internal applications** where "each application had its own UI patterns." Industry benchmarks show design systems cut development time by **47%** and design costs by **34%** — Eventbrite saved **534 engineering days** after launching theirs.
 
 ---
 
@@ -177,9 +193,9 @@ The prototype already demonstrates how sponsored content becomes a **native part
 
 CBS Interactive's Taboola integration already delivered a **49% increase in organic CTR** and **31% increase in engagement**. A unified feed architecture would allow this to be **consistent across all properties** rather than optimized per-property.
 
-### 3.4 Design Token Alignment with Nitro Design System
+### 3.4 Design Token Alignment with Voyage & Nitro Design Systems
 
-Paramount Global is already moving toward component consolidation with the **Nitro Design System** (Pluto TV), which uses a three-tier token architecture:
+Paramount Global is already moving toward component consolidation with **two active design systems** — Voyage Design System (VDS) for Paramount+ and the Nitro Design System for Pluto TV. Both use token-based architectures:
 
 | Token Tier | Purpose | Feed Architecture Mapping |
 |------------|---------|--------------------------|
@@ -196,7 +212,9 @@ colors: { cbs: { red: '#E10500', black: '#101010', ... } }
 fontFamily: { display: ['DM Serif Display'], serif: ['Source Serif 4'], sans: ['Source Sans 3'] }
 ```
 
-This aligns with Paramount's direction of **consolidating codebases into a single, unified framework** across all streaming apps — the same philosophy should apply to CBS News web properties.
+This aligns with Paramount's direction of **consolidating codebases into a single, unified framework** across all streaming apps (EyeQ stack unification, Pluto TV + Paramount+ codebase merger targeting mid-2026). The CBS News content layer should follow the same philosophy, with feed blocks inheriting tokens from VDS/Nitro rather than maintaining a separate token system.
+
+**VDS additionally enforces WCAG 2.2 AA accessibility** — a feed-based architecture inheriting VDS tokens would automatically bring accessibility compliance to all CBS News UI modes, eliminating the current need to audit accessibility across 45+ separate templates.
 
 ---
 
@@ -253,9 +271,11 @@ The key insight is not just "fewer templates" but a fundamental shift in mental 
 This approach:
 - Reduces the ~70% custom mode ratio to ~15-20%
 - Inverts the standard-to-custom ratio from 30/70 to 80/20
-- Aligns with Paramount Global's codebase consolidation strategy (Nitro Design System)
+- Completes the consolidation arc Paramount has already started (EyeQ stack unification, 14 station app merger, Pluto TV + Paramount+ codebase unification) by tackling the **content/editorial template layer** — the last major unconsolidated surface
+- Inherits VDS accessibility compliance (WCAG 2.2 AA) and Nitro design tokens, eliminating per-template accessibility audits
 - Leverages existing Taboola Feed integration patterns that already proved a 49% organic CTR lift
 - Creates a foundation for rapid dark mode, accessibility, and brand kit updates across all properties simultaneously
+- Mirrors proven results: Netflix's Hawkins unified 80+ apps, Eventbrite saved 534 engineering days, industry average shows 47% dev time reduction
 
 The prototype proves the concept works for the most common CBS News page type (Live Updates article with sponsored feed). The next step is to validate it against the other high-traffic standard modes (video article, photo gallery, topic page) and build the block component library.
 
@@ -263,10 +283,22 @@ The prototype proves the concept works for the most common CBS News page type (L
 
 ## Sources & References
 
+### Paramount / CBS Internal Systems
 - [Nitro Design System (Pluto TV / Paramount)](https://chrisgriffin.io/projects/pluto-tv-nitro-design-system) — Three-tier design token architecture, cross-platform component consolidation
+- [Voyage Design System / Paramount+ Accessibility](https://www.susiejin.com/paramount-a11y) — VDS atomic design principles, WCAG 2.2 AA compliance
+- [EyeQ: Pluto TV & Paramount Streaming Consolidation](https://www.tvrev.com/news/with-eyeq-pluto-tv-and-paramount-look-to-streamline-streaming) — Three tech stacks merged into unified framework
+- [CBS News Local Station App Merger](https://www.newscaststudio.com/2024/05/30/cbs-news-stations-apps-merging/) — 14 station apps consolidated into one CBS News app
+- [Paramount Codebase Consolidation](https://www.thewrap.com/pluto-tv-on-demand-library-interface-revamp-exclusive/) — Pluto TV + Paramount+ unification targeting mid-2026
+
+### CBS News & Taboola
 - [CBS Interactive Taboola Feed Case Study](https://www.taboola.com/resources/case-studies/cbs-interactive) — 49% organic CTR increase, feed-based engagement data
 - [CBSNews.com 2018 Redesign](https://www.newscaststudio.com/2018/12/20/cbs-news-website-redesign-2018/) — Story page layout options, video emphasis, template variants
-- [NewsKit Design System](https://www.newskit.co.uk/) — News-specific component library approach for template consolidation
 - [CBS News In-Depth Coverage](https://www.cbsnews.com/in-depth/) — Example of curated long-form content mode
-- [Paramount Codebase Consolidation](https://www.thewrap.com/pluto-tv-on-demand-library-interface-revamp-exclusive/) — Unified framework strategy across streaming properties
+
+### Industry Benchmarks & Design System ROI
+- [Hawkins: Netflix Design System](https://netflixtechblog.com/hawkins-diving-into-the-reasoning-behind-our-design-system-964a7357547) — 80+ apps unified, reasoning behind component consolidation
+- [ROI of Design Systems (Smashing Magazine)](https://www.smashingmagazine.com/2022/09/formula-roi-design-system/) — 47% dev time reduction, 34% design cost reduction, 534 engineering days saved (Eventbrite)
+- [NewsKit Design System](https://www.newskit.co.uk/) — News-specific component library approach for template consolidation
+- [Page Template vs. Component Architecture](https://blog.horizontaldigital.com/page-template-vs-component-site-architecture) — CMS architecture trade-offs
 - [Press Gazette: CMS Analysis](https://pressgazette.co.uk/news/which-cms-most-popular-content-management-systems-for-publishers/) — Industry context on publisher CMS architectures
+- [Design Systems 101 (NNGroup)](https://www.nngroup.com/articles/design-systems-101/) — Foundational design system principles
