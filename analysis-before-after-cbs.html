@@ -447,15 +447,15 @@
                 <tr>
                     <td class="prop-name">headline-font-size</td>
                     <td class="prop-value-before">14px</td>
-                    <td class="prop-value-after">18px</td>
+                    <td class="prop-value-after">20px</td>
                     <td>fonts.hierarchy[0] scaled</td>
                     <td><span class="tag tag-drift">Drift</span></td>
                 </tr>
                 <tr>
-                    <td class="prop-name">headline-font-weight</td>
-                    <td class="prop-value-before">700 (bold sans)</td>
-                    <td class="prop-value-after">400 (display serif)</td>
-                    <td>fonts.display.weight</td>
+                    <td class="prop-name">headline-line-height</td>
+                    <td class="prop-value-before">1.3</td>
+                    <td class="prop-value-after">1.125</td>
+                    <td>fonts.type_scale.headline.line_height</td>
                     <td><span class="tag tag-drift">Drift</span></td>
                 </tr>
                 <tr>
@@ -488,7 +488,7 @@
                 </tr>
                 <tr>
                     <td class="prop-name">separator-color</td>
-                    <td class="prop-value-before">#f3f4f6</td>
+                    <td class="prop-value-before">#E0E0E0</td>
                     <td class="prop-value-after">#E8E8E8</td>
                     <td>colors.core.border_gray.hex</td>
                     <td><span class="tag tag-drift">Drift</span></td>
@@ -531,8 +531,8 @@
                 <tr>
                     <td class="prop-name">hover-color</td>
                     <td class="prop-value-before">(not set)</td>
-                    <td class="prop-value-after">text-decoration: underline</td>
-                    <td>interactions.title_hover_decoration</td>
+                    <td class="prop-value-after">#E10500</td>
+                    <td>colors.primary.hex</td>
                     <td><span class="tag tag-manual">Missing</span></td>
                 </tr>
                 <tr>
@@ -747,6 +747,11 @@
                     <td>Cards show only headline + source. No "WAR WITH IRAN" or "MONEYWATCH" category context above headlines.</td>
                     <td><code>fonts.hierarchy.category_label</code>: 11px, 700 weight, uppercase, 1.2px tracking in #101010 &mdash; replicates CBS's topic labeling.</td>
                 </tr>
+                <tr>
+                    <td><strong>Wrong divider color</strong></td>
+                    <td>Feed uses <code>#E0E0E0</code> warm gray dividers &mdash; a generic default that doesn't match CBS's deliberate border palette.</td>
+                    <td><code>colors.core.border_gray.hex: "#E8E8E8"</code> &mdash; the exact neutral gray CBS uses for all separators and card borders site-wide.</td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -899,11 +904,11 @@
         </p>
         <div class="stat-row">
             <div class="stat-card">
-                <div class="stat-value red">11 of 18</div>
+                <div class="stat-value red">9 of 18</div>
                 <div class="stat-label">Properties with drift in manual config</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value red">6 of 18</div>
+                <div class="stat-value red">5 of 18</div>
                 <div class="stat-label">Brand features entirely missing</div>
             </div>
             <div class="stat-card">
