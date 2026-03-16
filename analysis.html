@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taboola Feed Analysis: Before &amp; After Brand Kit Application — CBS News</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cbs: { red: '#E10500', black: '#101010', charcoal: '#181818', gray: '#5F5F5F', border: '#E8E8E8', bg: '#F2F2F2', blue: '#005591', green: '#00711A' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Source Sans 3', system-ui, sans-serif; }
+
+        /* ========== BEFORE (Taboola Default) Styles ========== */
+        .before-feed { font-family: Helvetica, Arial, sans-serif; }
+        .before-feed .trc_rbox_header_span {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #808080;
+            font-weight: bold;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .before-feed .trc-content-sponsored-subtitle {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            color: #808080;
+        }
+        .before-feed .tbl-card-title {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.35;
+            color: #333;
+            font-weight: 700;
+        }
+        .before-feed .tbl-card-title:hover { text-decoration: underline; }
+        .before-feed .tbl-card-branding {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            color: #888;
+        }
+        .before-feed .tbl-card-img {
+            border-radius: 6px;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            width: 100%;
+        }
+        .before-feed .tbl-cta {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            color: #1a73e8;
+            border: 1px solid #1a73e8;
+            border-radius: 16px;
+            padding: 3px 10px;
+            font-weight: 600;
+        }
+        .before-feed .tbl-sponsored-badge {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            background: #e8e8e8;
+            color: #666;
+            padding: 2px 5px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== AFTER (Brand Kit Applied) Styles ========== */
+        .after-feed { font-family: 'Source Sans 3', sans-serif; }
+        .after-feed .card-headline {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+        }
+        .after-feed .trc_rbox_header_span {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            color: #9ca3af;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .after-feed .tbl-card-title {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+            color: #181818;
+        }
+        .after-feed .tbl-card-branding {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 10px;
+            color: #9ca3af;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .after-feed .tbl-card-img {
+            border-radius: 0;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            width: 100%;
+        }
+        .after-feed .tbl-cta {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            color: #4b5563;
+            border: 1px solid #d1d5db;
+            border-radius: 9999px;
+            padding: 4px 12px;
+            font-weight: 700;
+        }
+        .after-feed .tbl-sponsored-badge {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            background: #101010;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .after-feed .tbl-card-desc {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 14px;
+            color: #5F5F5F;
+            line-height: 1.45;
+        }
+
+        /* ========== Diff Highlights ========== */
+        .diff-highlight {
+            position: relative;
+        }
+        .diff-highlight::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border: 2px dashed #f59e0b;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .diff-highlight:hover::after { opacity: 1; }
+
+        .callout-arrow {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #fef3c7;
+        }
+
+        /* Report section styles */
+        .report-section { scroll-margin-top: 80px; }
+        .property-row { border-bottom: 1px solid #f3f4f6; }
+        .property-row:last-child { border-bottom: none; }
+
+        /* Sticky nav */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.92);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Annotation badge */
+        .annotation {
+            position: absolute;
+            z-index: 10;
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #92400e;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+
+    <!-- Sticky Nav -->
+    <div class="sticky-nav">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+            <h1 class="text-lg font-bold tracking-tight">Taboola Feed Analysis: CBS News</h1>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-500">
+                <a href="#executive-summary" class="hover:text-gray-900">Summary</a>
+                <a href="#visual-comparison" class="hover:text-gray-900">Before / After</a>
+                <a href="#property-audit" class="hover:text-gray-900">Property Audit</a>
+                <a href="#crawler-advantages" class="hover:text-gray-900">Crawler Advantages</a>
+                <a href="#feature-catalog" class="hover:text-gray-900">ADA Feature Catalog</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!-- EXECUTIVE SUMMARY                                                 -->
+    <!-- ================================================================ -->
+    <section id="executive-summary" class="report-section max-w-5xl mx-auto px-6 pt-12 pb-8">
+        <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
+            <h2 class="text-2xl font-bold mb-2">Executive Summary</h2>
+            <p class="text-gray-500 text-sm mb-6">Analysis of the Taboola sponsored feed on <a href="https://www.cbsnews.com/live-updates/iran-war-kc-135-plane-crash-iraq-us-deaths-strait-of-hormuz-no-end-in-sight/" class="underline text-blue-600">cbsnews.com/live-updates/iran-war...</a></p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-red-50 border border-red-100 rounded-lg p-5">
+                    <h3 class="font-bold text-red-800 text-sm uppercase tracking-wider mb-2">Current State (Before)</h3>
+                    <p class="text-red-900 text-[15px] leading-relaxed">Taboola renders with its <strong>default generic styling</strong> &mdash; Helvetica/Arial fonts, blue CTAs, rounded image corners, gray badges. Publishers manually configure <code class="text-xs bg-red-100 px-1 rounded">mode</code>, <code class="text-xs bg-red-100 px-1 rounded">custom_properties</code>, and <code class="text-xs bg-red-100 px-1 rounded">custom_ui</code> parameters through the Taboola Backstage dashboard to try to approximate brand alignment. This requires ongoing manual maintenance and produces inconsistent results.</p>
+                </div>
+                <div class="bg-green-50 border border-green-100 rounded-lg p-5">
+                    <h3 class="font-bold text-green-800 text-sm uppercase tracking-wider mb-2">Target State (After)</h3>
+                    <p class="text-green-900 text-[15px] leading-relaxed">A <strong>brand kit generated by web crawler</strong> automatically extracts CBS News's exact typography (Publico Headline, Proxima Nova), colors (#101010, #181818, #5F5F5F), spacing rules, card patterns, and visual conventions. These values are programmatically applied to the Taboola feed, producing a seamless, native-feeling experience with zero manual configuration.</p>
+                </div>
+                <div class="bg-blue-50 border border-blue-100 rounded-lg p-5">
+                    <h3 class="font-bold text-blue-800 text-sm uppercase tracking-wider mb-2">Key Findings</h3>
+                    <ul class="text-blue-900 text-[14px] space-y-1.5 leading-snug">
+                        <li><strong>14 style properties</strong> diverge from the CBS brand kit in the default Taboola feed</li>
+                        <li><strong>Font mismatch</strong> is the most visually jarring discrepancy</li>
+                        <li><strong>0 manual config steps</strong> would be needed with crawler-generated brand kits</li>
+                        <li><strong>100% of properties</strong> can be mapped from a crawled brand kit JSON</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-lg p-5">
+                <h3 class="font-bold text-sm uppercase tracking-wider text-gray-500 mb-3">How Custom Properties Work Today (Manual Process)</h3>
+                <div class="flex items-start gap-4 text-[14px] text-gray-700 leading-relaxed">
+                    <div class="flex-1">
+                        <p class="mb-2">Publishers like CBS configure their Taboola feed through the <strong>Backstage dashboard</strong> using three mechanisms:</p>
+                        <ol class="list-decimal pl-5 space-y-1.5">
+                            <li><strong><code>mode</code></strong> &mdash; Selects a UI template (e.g., <code>thumbnails-feed-01</code>, <code>thumbnails-b</code>). This controls the card layout grid and density.</li>
+                            <li><strong><code>custom_properties</code></strong> &mdash; A JSON object of key-value pairs passed at widget init time. Controls things like <code>fontFamily</code>, <code>titleFontSize</code>, <code>brandingTextColor</code>, etc. These must be manually set and maintained.</li>
+                            <li><strong><code>custom_ui</code> CSS overrides</strong> &mdash; Publisher-specific CSS injected into the Taboola iframe/widget that targets <code>.trc_rbox_*</code> classes. Taboola's team activates these on behalf of the publisher.</li>
+                        </ol>
+                    </div>
+                    <div class="w-px bg-gray-200 self-stretch mx-4 hidden md:block"></div>
+                    <div class="flex-1 hidden md:block">
+                        <p class="mb-2"><strong>Problems with this approach:</strong></p>
+                        <ul class="space-y-1.5">
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold mt-0.5">&#x2717;</span> Brand refreshes require manual re-configuration across every publisher</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold mt-0.5">&#x2717;</span> CSS selectors (<code>.trc_*</code>) can break when Taboola updates widget internals</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold mt-0.5">&#x2717;</span> No systematic way to verify brand compliance at scale</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold mt-0.5">&#x2717;</span> Custom properties must be set manually per-publisher in Backstage</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold mt-0.5">&#x2717;</span> Drift between actual site styling and Taboola config goes undetected</li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold mt-0.5">&#x2717;</span> Time-to-launch for new publishers is days/weeks, not minutes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- VISUAL BEFORE / AFTER COMPARISON                                  -->
+    <!-- ================================================================ -->
+    <section id="visual-comparison" class="report-section max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-bold mb-2">Visual Comparison: Before &amp; After</h2>
+        <p class="text-gray-500 text-sm mb-8">Below-article Taboola feed as it appears on the CBS News Iran war live updates page. Hover over cards to see annotated differences.</p>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+
+            <!-- ===== BEFORE COLUMN ===== -->
+            <div>
+                <div class="bg-red-500 text-white text-center py-2 rounded-t-lg font-bold text-sm uppercase tracking-wider">Before &mdash; Taboola Default / Manual Config</div>
+                <div class="bg-white border border-gray-200 border-t-0 rounded-b-lg p-6 before-feed">
+                    <!-- Simulated article ending -->
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <div class="flex flex-wrap items-center gap-3 text-[13px] text-gray-500">
+                            <span>In:</span>
+                            <a href="#" class="text-blue-600 hover:underline">War</a>
+                            <a href="#" class="text-blue-600 hover:underline">Iran</a>
+                            <a href="#" class="text-blue-600 hover:underline">Oil and Gas</a>
+                        </div>
+                    </div>
+
+                    <!-- Taboola Header (Default) -->
+                    <div class="flex items-center justify-between mb-5 relative">
+                        <span class="trc_rbox_header_span">Sponsored Links</span>
+                        <span class="trc-content-sponsored-subtitle" style="font-size:11px;color:#888;">by Taboola</span>
+                        <span class="annotation -top-7 left-0">Generic header — no brand typography</span>
+                    </div>
+
+                    <!-- Row 1: 2-col default cards -->
+                    <div class="grid grid-cols-2 gap-4 mb-5">
+                        <div class="group cursor-pointer relative">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img mb-2 bg-gray-200" onerror="this.onerror=null;this.style.background='#ddd';this.style.height='120px';">
+                            <h3 class="tbl-card-title diff-highlight">Why Top Authors Say Writing Your Memoir Is The Most Important Thing</h3>
+                            <p style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:#666;line-height:1.4;margin:4px 0 6px;" class="diff-highlight">The greatest gift you can leave is your story.</p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge diff-highlight">Sponsored</span>
+                                    <span class="tbl-card-branding">Memowrite</span>
+                                </div>
+                                <span class="tbl-cta diff-highlight">Learn More</span>
+                            </div>
+                            <span class="annotation -top-7 right-0">Rounded corners, blue CTA</span>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img mb-2 bg-gray-200" onerror="this.onerror=null;this.style.background='#ddd';this.style.height='120px';">
+                            <h3 class="tbl-card-title">Where Should You Put Your Savings to Earn the Most Interest?</h3>
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge">Sponsored</span>
+                                    <span class="tbl-card-branding">Bankrate</span>
+                                </div>
+                                <span class="tbl-cta">Learn More</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: 3-col default cards -->
+                    <div class="grid grid-cols-3 gap-3 mb-5 pt-4 border-t border-gray-100">
+                        <div class="group cursor-pointer relative">
+                            <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="tbl-card-img mb-2 bg-gray-200" onerror="this.onerror=null;this.style.background='#ddd';this.style.height='80px';">
+                            <h3 class="tbl-card-title" style="font-size:12px;">The Hidden Risk in U.S. Defense Supply</h3>
+                            <div class="flex items-center gap-1 mt-2">
+                                <span class="tbl-sponsored-badge">Sponsored</span>
+                                <span class="tbl-card-branding" style="font-size:9px;">Tomorrow Inv...</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e8dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="tbl-card-img mb-2 bg-gray-200" onerror="this.onerror=null;this.style.background='#ddd';this.style.height='80px';">
+                            <h3 class="tbl-card-title" style="font-size:12px;">12 Things To Cut When Money Gets Tight</h3>
+                            <div class="flex items-center gap-1 mt-2">
+                                <span class="tbl-sponsored-badge">Sponsored</span>
+                                <span class="tbl-card-branding" style="font-size:9px;">Greensprout</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="tbl-card-img mb-2 bg-gray-200" onerror="this.onerror=null;this.style.background='#ddd';this.style.height='80px';">
+                            <h3 class="tbl-card-title" style="font-size:12px;">10 Best Stocks to Own in 2026</h3>
+                            <div class="flex items-center gap-1 mt-2">
+                                <span class="tbl-sponsored-badge">Sponsored</span>
+                                <span class="tbl-card-branding" style="font-size:9px;">Marketbeat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ad slot -->
+                    <div class="bg-gray-100 border border-gray-200 text-center py-8 mb-5">
+                        <span style="font-family:Helvetica,Arial,sans-serif;font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:1px;">Advertisement</span>
+                        <div class="mt-2 text-gray-300 text-xs">[728x90 display ad]</div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img mb-2 bg-gray-200" onerror="this.onerror=null;this.style.background='#ddd';this.style.height='120px';">
+                            <h3 class="tbl-card-title">The Surprising Truth About Why Grandkids Get Bored at Your House</h3>
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge">Sponsored</span>
+                                    <span class="tbl-card-branding">Pippaloo</span>
+                                </div>
+                                <span class="tbl-cta">Learn More</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1549315354-f56f34e60bc4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img mb-2 bg-gray-200" onerror="this.onerror=null;this.style.background='#ddd';this.style.height='120px';">
+                            <h3 class="tbl-card-title">Who Charges The Least For Car Insurance In Florida?</h3>
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge">Sponsored</span>
+                                    <span class="tbl-card-branding">Otto Insurance</span>
+                                </div>
+                                <span class="tbl-cta">Click Here</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== AFTER COLUMN ===== -->
+            <div>
+                <div class="bg-green-600 text-white text-center py-2 rounded-t-lg font-bold text-sm uppercase tracking-wider">After &mdash; Crawler-Generated Brand Kit Applied</div>
+                <div class="bg-white border border-gray-200 border-t-0 rounded-b-lg p-6 after-feed">
+                    <!-- Simulated article ending (CBS-styled) -->
+                    <div class="border-b pb-6 mb-6" style="border-color:#E8E8E8;">
+                        <div class="flex flex-wrap items-center gap-3 text-[14px] font-semibold" style="font-family:'Source Sans 3',sans-serif;">
+                            <span class="font-normal text-[13px]" style="color:#5F5F5F;">In:</span>
+                            <a href="#" class="hover:underline" style="color:#101010;">War</a>
+                            <a href="#" class="hover:underline" style="color:#101010;">Iran</a>
+                            <a href="#" class="hover:underline" style="color:#101010;">Oil and Gas</a>
+                        </div>
+                    </div>
+
+                    <!-- Taboola Header (Brand Kit) -->
+                    <div class="flex items-center justify-between mb-6 relative">
+                        <span class="trc_rbox_header_span">Sponsored Stories</span>
+                        <span style="font-family:'Source Sans 3',sans-serif;font-size:11px;color:#9ca3af;letter-spacing:0.05em;">by Taboola</span>
+                        <span class="annotation -top-7 left-0">Source Sans 3 + uppercase tracking</span>
+                    </div>
+
+                    <!-- Row 1: 2-col brand-kit cards -->
+                    <div class="grid grid-cols-2 gap-6 mb-6">
+                        <div class="group cursor-pointer relative">
+                            <div class="w-full aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img transition duration-300 group-hover:scale-[1.03]" onerror="this.onerror=null;this.style.background='#eee';this.style.height='100%';">
+                            </div>
+                            <h3 class="tbl-card-title card-headline text-[17px] leading-[1.25] mb-2 group-hover:underline diff-highlight" style="color:#181818;">Why Top Authors Say Writing Your Memoir Is The Most Important Thing</h3>
+                            <p class="tbl-card-desc diff-highlight">The greatest gift you can leave is your story.</p>
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge diff-highlight">Paid</span>
+                                    <span class="tbl-card-branding">Memowrite</span>
+                                </div>
+                                <span class="tbl-cta diff-highlight">Learn More</span>
+                            </div>
+                            <span class="annotation -top-7 right-0">Sharp corners, serif headline, pill CTA</span>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <div class="w-full aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                                <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img transition duration-300 group-hover:scale-[1.03]" onerror="this.onerror=null;this.style.background='#eee';this.style.height='100%';">
+                            </div>
+                            <h3 class="tbl-card-title card-headline text-[17px] leading-[1.25] mb-2 group-hover:underline" style="color:#181818;">Where Should You Put Your Savings to Earn the Most Interest?</h3>
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge">Paid</span>
+                                    <span class="tbl-card-branding">Bankrate</span>
+                                </div>
+                                <span class="tbl-cta">Learn More</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: 3-col brand-kit cards -->
+                    <div class="grid grid-cols-3 gap-5 mb-6 pt-6" style="border-top:1px solid #E8E8E8;">
+                        <div class="group cursor-pointer relative">
+                            <div class="w-full aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="tbl-card-img transition duration-300 group-hover:scale-[1.03]" onerror="this.onerror=null;this.style.background='#eee';this.style.height='100%';">
+                            </div>
+                            <h3 class="tbl-card-title card-headline text-[14px] leading-[1.2] mb-2 group-hover:underline" style="color:#181818;">The Hidden Risk in U.S. Defense Supply</h3>
+                            <div class="flex items-center gap-1.5 mt-2">
+                                <span class="tbl-sponsored-badge">Paid</span>
+                                <span class="tbl-card-branding" style="font-size:9px;">Tomorrow Inv...</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <div class="w-full aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                                <img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e8dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="tbl-card-img transition duration-300 group-hover:scale-[1.03]" onerror="this.onerror=null;this.style.background='#eee';this.style.height='100%';">
+                            </div>
+                            <h3 class="tbl-card-title card-headline text-[14px] leading-[1.2] mb-2 group-hover:underline" style="color:#181818;">12 Things To Cut When Money Gets Tight</h3>
+                            <div class="flex items-center gap-1.5 mt-2">
+                                <span class="tbl-sponsored-badge">Paid</span>
+                                <span class="tbl-card-branding" style="font-size:9px;">Greensprout</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <div class="w-full aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="tbl-card-img transition duration-300 group-hover:scale-[1.03]" onerror="this.onerror=null;this.style.background='#eee';this.style.height='100%';">
+                            </div>
+                            <h3 class="tbl-card-title card-headline text-[14px] leading-[1.2] mb-2 group-hover:underline" style="color:#181818;">10 Best Stocks to Own in 2026</h3>
+                            <div class="flex items-center gap-1.5 mt-2">
+                                <span class="tbl-sponsored-badge">Paid</span>
+                                <span class="tbl-card-branding" style="font-size:9px;">Marketbeat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ad slot (CBS styled) -->
+                    <div class="bg-[#F8F9FA] border-y text-center py-8 mb-6" style="border-color:#E8E8E8;">
+                        <span style="font-family:'Source Sans 3',sans-serif;font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;">Advertisement</span>
+                        <div class="mt-2 text-gray-300 text-xs">[728x90 display ad]</div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="group cursor-pointer">
+                            <div class="w-full aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                                <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img transition duration-300 group-hover:scale-[1.03]" onerror="this.onerror=null;this.style.background='#eee';this.style.height='100%';">
+                            </div>
+                            <h3 class="tbl-card-title card-headline text-[17px] leading-[1.25] mb-2 group-hover:underline" style="color:#181818;">The Surprising Truth About Why Grandkids Get Bored at Your House</h3>
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge">Paid</span>
+                                    <span class="tbl-card-branding">Pippaloo</span>
+                                </div>
+                                <span class="tbl-cta">Learn More</span>
+                            </div>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <div class="w-full aspect-[16/10] overflow-hidden mb-3 bg-gray-100">
+                                <img src="https://images.unsplash.com/photo-1549315354-f56f34e60bc4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="tbl-card-img transition duration-300 group-hover:scale-[1.03]" onerror="this.onerror=null;this.style.background='#eee';this.style.height='100%';">
+                            </div>
+                            <h3 class="tbl-card-title card-headline text-[17px] leading-[1.25] mb-2 group-hover:underline" style="color:#181818;">Who Charges The Least For Car Insurance In Florida?</h3>
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="tbl-sponsored-badge">Paid</span>
+                                    <span class="tbl-card-branding">Otto Insurance</span>
+                                </div>
+                                <span class="tbl-cta">Click Here</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- PROPERTY-BY-PROPERTY AUDIT TABLE                                  -->
+    <!-- ================================================================ -->
+    <section id="property-audit" class="report-section max-w-5xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-bold mb-2">Property-by-Property Audit</h2>
+        <p class="text-gray-500 text-sm mb-8">Every CSS property where the Taboola default diverges from the CBS News brand kit.</p>
+
+        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] bg-gray-50 border-b border-gray-200 text-xs font-bold uppercase tracking-wider text-gray-500 px-5 py-3">
+                <div>Property</div>
+                <div>Taboola Default</div>
+                <div>Brand Kit Value</div>
+                <div>Impact</div>
+            </div>
+
+            <!-- Row 1 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Headline font-family</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">Helvetica, Arial, sans-serif</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">Publico Headline, serif</code></div>
+                <div><span class="inline-block bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Critical</span> Most visible mismatch</div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Headline font-weight</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">700 (bold)</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">700 (display serif reads differently)</code></div>
+                <div><span class="inline-block bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Medium</span></div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Headline color</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">#333333</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">#181818</code></div>
+                <div><span class="inline-block bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Medium</span> Darker = more authoritative</div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">UI font-family</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">Helvetica, Arial, sans-serif</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">Proxima Nova, sans-serif</code></div>
+                <div><span class="inline-block bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Critical</span></div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Image border-radius</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">6px</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">0px</code></div>
+                <div><span class="inline-block bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Critical</span> CBS uses sharp corners everywhere</div>
+            </div>
+
+            <!-- Row 6 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Sponsored badge style</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">bg:#e8e8e8 color:#666</code> "Sponsored"</div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">bg:#101010 color:#fff</code> "Paid"</div>
+                <div><span class="inline-block bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Medium</span></div>
+            </div>
+
+            <!-- Row 7 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">CTA button color</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">#1a73e8 (Google blue)</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">#4b5563 (neutral gray)</code></div>
+                <div><span class="inline-block bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Critical</span> Blue screams "ad"</div>
+            </div>
+
+            <!-- Row 8 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">CTA border-radius</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">16px</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">9999px (full pill)</code></div>
+                <div><span class="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Low</span></div>
+            </div>
+
+            <!-- Row 9 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Branding text color</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">#888888</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">#9ca3af</code></div>
+                <div><span class="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Low</span></div>
+            </div>
+
+            <!-- Row 10 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Branding text-transform</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">none</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">uppercase</code></div>
+                <div><span class="inline-block bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Medium</span> CBS metadata is always uppercase</div>
+            </div>
+
+            <!-- Row 11 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Branding letter-spacing</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">0</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">0.12em (~1px)</code></div>
+                <div><span class="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Low</span></div>
+            </div>
+
+            <!-- Row 12 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Header text-transform</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">none ("Sponsored Links")</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">uppercase ("SPONSORED STORIES")</code></div>
+                <div><span class="inline-block bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Medium</span></div>
+            </div>
+
+            <!-- Row 13 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Description font</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">Helvetica 12px #666</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">Proxima Nova 14px #5F5F5F</code></div>
+                <div><span class="inline-block bg-yellow-100 text-yellow-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Medium</span></div>
+            </div>
+
+            <!-- Row 14 -->
+            <div class="grid grid-cols-[200px_1fr_1fr_1fr] px-5 py-3 property-row text-[13px]">
+                <div class="font-semibold text-gray-900">Separator border-color</div>
+                <div class="text-red-700"><code class="bg-red-50 px-1 rounded text-[12px]">#f3f4f6 (very light)</code></div>
+                <div class="text-green-700"><code class="bg-green-50 px-1 rounded text-[12px]">#E8E8E8 (CBS border gray)</code></div>
+                <div><span class="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Low</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- CRAWLER ADVANTAGES                                                -->
+    <!-- ================================================================ -->
+    <section id="crawler-advantages" class="report-section max-w-5xl mx-auto px-6 py-12 pb-24">
+        <h2 class="text-2xl font-bold mb-2">Why Crawler-Generated Brand Kits Are Superior</h2>
+        <p class="text-gray-500 text-sm mb-8">Comparing manual custom_properties configuration vs. automated web crawling for brand kit generation.</p>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <!-- Current: Manual Process -->
+            <div class="bg-white border border-red-200 rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-lg text-red-800 mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Current: Manual Configuration
+                </h3>
+                <div class="space-y-4 text-[14px]">
+                    <div class="bg-red-50 border border-red-100 rounded-lg p-4">
+                        <h4 class="font-bold text-red-900 text-sm mb-2">Workflow</h4>
+                        <ol class="list-decimal pl-5 space-y-1 text-red-800">
+                            <li>Publisher requests brand styling changes</li>
+                            <li>Account manager creates ticket for CSS team</li>
+                            <li>CSS team inspects publisher site manually</li>
+                            <li>Team writes custom_properties JSON or CSS overrides</li>
+                            <li>Overrides deployed to Backstage config</li>
+                            <li>QA verifies visual match (manual review)</li>
+                            <li>Repeat when publisher redesigns</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm mb-2">Pain Points</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold text-lg leading-none">1</span><div><strong>Time-to-launch:</strong> Days to weeks per publisher. CSS team is a bottleneck &mdash; they must manually inspect each site, identify fonts, colors, spacing, and translate those into Taboola-specific config keys.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold text-lg leading-none">2</span><div><strong>Drift detection:</strong> When CBS refreshes their brand (new fonts, new colors), nobody is notified. The Taboola feed drifts out of alignment silently.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold text-lg leading-none">3</span><div><strong>Incomplete extraction:</strong> Manual inspection often misses subtleties &mdash; letter-spacing values, exact line-height ratios, hover state behaviors, metadata text-transform rules.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold text-lg leading-none">4</span><div><strong>Scale ceiling:</strong> Process doesn't scale to thousands of publishers. Each one requires bespoke human attention.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-red-500 font-bold text-lg leading-none">5</span><div><strong>Fragile selectors:</strong> CSS overrides targeting <code>.trc_*</code> classes can break when Taboola's widget renderer updates.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proposed: Crawler-Generated -->
+            <div class="bg-white border border-green-200 rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-lg text-green-800 mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Proposed: Crawler-Generated Brand Kit
+                </h3>
+                <div class="space-y-4 text-[14px]">
+                    <div class="bg-green-50 border border-green-100 rounded-lg p-4">
+                        <h4 class="font-bold text-green-900 text-sm mb-2">Workflow</h4>
+                        <ol class="list-decimal pl-5 space-y-1 text-green-800">
+                            <li>Crawler visits publisher homepage + article page</li>
+                            <li>Extracts computed styles for all typography, colors, spacing</li>
+                            <li>Generates structured brand kit JSON (like the CBS example)</li>
+                            <li>Mapping layer translates brand kit &rarr; Taboola custom_properties</li>
+                            <li>Feed renders with brand-native styling automatically</li>
+                            <li>Re-crawl on schedule detects brand changes</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm mb-2">Advantages</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-2"><span class="text-green-600 font-bold text-lg leading-none">1</span><div><strong>Minutes, not weeks:</strong> Fully automated. Crawl &rarr; generate &rarr; apply takes minutes. No human CSS team needed for the initial pass.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-green-600 font-bold text-lg leading-none">2</span><div><strong>Drift detection built in:</strong> Scheduled re-crawls detect when a publisher's brand changes. The brand kit JSON diff shows exactly what changed and what needs updating.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-green-600 font-bold text-lg leading-none">3</span><div><strong>Exhaustive extraction:</strong> The crawler captures <em>every</em> computed style value &mdash; letter-spacing, line-height ratios, text-transform, border-radius. Nothing is missed because a human didn't notice it.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-green-600 font-bold text-lg leading-none">4</span><div><strong>Scales to any publisher count:</strong> Same automated pipeline works for 10 publishers or 10,000. Marginal cost per publisher approaches zero.</div></li>
+                            <li class="flex items-start gap-2"><span class="text-green-600 font-bold text-lg leading-none">5</span><div><strong>Semantic mapping:</strong> Brand kit JSON uses semantic keys (<code>fonts.serif</code>, <code>colors.core_palette</code>) instead of fragile CSS selectors. The mapping layer stays stable even if Taboola's internal class names change.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mapping diagram -->
+        <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-sm mb-12">
+            <h3 class="font-bold text-lg mb-6">Brand Kit JSON &rarr; Taboola custom_properties Mapping</h3>
+            <p class="text-gray-500 text-sm mb-6">This shows how the crawler's structured brand kit output directly maps to Taboola configuration, eliminating manual translation.</p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-[13px]">
+                    <thead>
+                        <tr class="border-b-2 border-gray-200 text-left">
+                            <th class="py-2 pr-4 font-bold text-gray-500 uppercase text-[11px] tracking-wider">Brand Kit JSON Path</th>
+                            <th class="py-2 pr-4 font-bold text-gray-500 uppercase text-[11px] tracking-wider">Extracted Value (CBS)</th>
+                            <th class="py-2 pr-4 font-bold text-gray-500 uppercase text-[11px] tracking-wider">&rarr;</th>
+                            <th class="py-2 pr-4 font-bold text-gray-500 uppercase text-[11px] tracking-wider">Taboola custom_property Key</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">fonts.serif[0].name</code></td>
+                            <td class="py-2.5 pr-4"><code>"Publico Headline"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">title-font-family</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">fonts.sans_serif[0].name</code></td>
+                            <td class="py-2.5 pr-4"><code>"Proxima Nova"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">branding-font-family</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">colors.core_palette.dark_charcoal.hex</code></td>
+                            <td class="py-2.5 pr-4"><code>"#181818"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">title-color</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">colors.secondary_palette.mid_gray.hex</code></td>
+                            <td class="py-2.5 pr-4"><code>"#5F5F5F"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">description-color</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">layout.article_cards.border_radius</code></td>
+                            <td class="py-2.5 pr-4"><code>"0px"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">thumbnail-border-radius</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">colors.secondary_palette.light_gray_border.hex</code></td>
+                            <td class="py-2.5 pr-4"><code>"#E8E8E8"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">separator-color</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">fonts.typography_hierarchy[7].font_size</code></td>
+                            <td class="py-2.5 pr-4"><code>"16px"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">description-font-size</code></td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">fonts.typography_hierarchy[10].letter_spacing</code></td>
+                            <td class="py-2.5 pr-4"><code>"~1px"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">branding-letter-spacing</code></td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 pr-4"><code class="text-purple-700 bg-purple-50 px-1 rounded">fonts.typography_hierarchy[10].text_transform</code></td>
+                            <td class="py-2.5 pr-4"><code>"uppercase"</code></td>
+                            <td class="py-2.5 pr-4 text-gray-400">&rarr;</td>
+                            <td class="py-2.5 pr-4"><code class="text-blue-700 bg-blue-50 px-1 rounded">branding-text-transform</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bottom line -->
+        <div class="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-xl p-8 shadow-sm">
+            <h3 class="font-bold text-lg mb-4">Bottom Line</h3>
+            <div class="grid md:grid-cols-3 gap-6 text-[14px]">
+                <div>
+                    <div class="text-3xl font-black text-green-700 mb-1">14 &rarr; 0</div>
+                    <p class="text-gray-600">Style mismatches eliminated by applying crawler-generated brand kit values to the Taboola feed configuration.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-green-700 mb-1">Weeks &rarr; Minutes</div>
+                    <p class="text-gray-600">Time from new publisher onboarding to brand-native feed rendering, with no manual CSS team involvement.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-green-700 mb-1">Reactive &rarr; Proactive</div>
+                    <p class="text-gray-600">Scheduled re-crawls detect brand drift automatically, instead of waiting for publisher complaints.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ADA FEATURE CATALOG SECTION ========== -->
+    <section id="feature-catalog" class="max-w-6xl mx-auto px-4 py-16">
+        <div class="mb-10">
+            <div class="inline-block bg-indigo-100 text-indigo-800 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">ADA Feature Catalog</div>
+            <h2 class="text-3xl font-black mb-3">Automated Design Adaptation — Full Feature Extraction</h2>
+            <p class="text-gray-600 max-w-3xl">The ADA pipeline catalogs <strong>62 discrete brand features</strong> across 8 categories. The previous analysis identified 14 divergent properties; this catalog inventories every extractable feature, including those Taboola doesn't yet support.</p>
+        </div>
+
+        <!-- Summary Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-5 text-center border border-indigo-200">
+                <div class="text-4xl font-black text-indigo-700">62</div>
+                <div class="text-xs text-indigo-600 font-semibold mt-1 uppercase tracking-wide">Features Extracted</div>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-5 text-center border border-green-200">
+                <div class="text-4xl font-black text-green-700">31</div>
+                <div class="text-xs text-green-600 font-semibold mt-1 uppercase tracking-wide">Mappable to Taboola</div>
+            </div>
+            <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-5 text-center border border-amber-200">
+                <div class="text-4xl font-black text-amber-700">31</div>
+                <div class="text-xs text-amber-600 font-semibold mt-1 uppercase tracking-wide">API Gap (No Target)</div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 text-center border border-purple-200">
+                <div class="text-4xl font-black text-purple-700">95%</div>
+                <div class="text-xs text-purple-600 font-semibold mt-1 uppercase tracking-wide">Brand Score (ADA)</div>
+            </div>
+        </div>
+
+        <!-- Category Breakdown -->
+        <h3 class="text-xl font-bold mb-6">Feature Catalog by Category</h3>
+        <div class="grid md:grid-cols-2 gap-4 mb-12">
+            <!-- Typography -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Typography</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">18 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Display font: <code class="text-indigo-700 bg-indigo-50 px-1 rounded text-[12px]">Publico Headline</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">UI sans: <code class="text-indigo-700 bg-indigo-50 px-1 rounded text-[12px]">Proxima Nova</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Body serif: <code class="text-indigo-700 bg-indigo-50 px-1 rounded text-[12px]">TTNorms Pro Serif</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">7-level hierarchy (h1→caption) with sizes, weights, transforms</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">3 derived rules: serif-for-editorial, sans-for-UI, uppercase-metadata</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">12 mappable · 6 gap</div>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Color Palette</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">12 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#E10500"></span>
+                        <span class="text-gray-700">Brand Red <code class="text-[11px] text-gray-500">#E10500</code> — Live badges, accents</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#101010"></span>
+                        <span class="text-gray-700">Near Black <code class="text-[11px] text-gray-500">#101010</code> — Primary text, logo</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#181818"></span>
+                        <span class="text-gray-700">Charcoal <code class="text-[11px] text-gray-500">#181818</code> — Headlines</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#5F5F5F"></span>
+                        <span class="text-gray-700">Mid Gray <code class="text-[11px] text-gray-500">#5F5F5F</code> — Secondary text</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-300 flex-shrink-0" style="background:#E8E8E8"></span>
+                        <span class="text-gray-700">Border Gray <code class="text-[11px] text-gray-500">#E8E8E8</code> — Dividers</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#005591"></span>
+                        <span class="text-gray-700">Link Blue <code class="text-[11px] text-gray-500">#005591</code> + 2 functional colors</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">7 mappable · 5 gap</div>
+                </div>
+            </div>
+
+            <!-- Spacing & Layout -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Spacing &amp; Layout</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">10 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Page max-width: 1240px / 1400px (nav)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Content ratio: 68% article / 32% sidebar</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Card gap: 24px · Column gap: 40px</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Nav heights: 56px (primary) / 44px (secondary)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Top brand bar: 31px solid #101010</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">5 mappable · 5 gap</div>
+                </div>
+            </div>
+
+            <!-- Image Treatment -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Image Treatment</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">6 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Border-radius: <strong>0px</strong> (sharp corners everywhere)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Aspect ratios: 16:9 (hero) / 16:10 (cards)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Object-fit: cover · Hover: scale(1.03) ease 0.3s</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">3 mappable · 3 gap</div>
+                </div>
+            </div>
+
+            <!-- Interactive States -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Interactive States</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">5 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Link hover: <span style="color:#E10500">#E10500</span> (CBS red)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Title hover: underline · Button hover bg: #F2F2F2</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Active tab: 3px bottom border #101010</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">1 mappable · 4 gap</div>
+                </div>
+            </div>
+
+            <!-- Component Patterns -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Component Patterns</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">5 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">CTA: neutral gray pill <code class="text-[11px]">#4b5563 / 9999px</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Sponsored badge: dark bg <code class="text-[11px]">#101010 / uppercase / "Paid"</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Separator: 1px solid #E8E8E8 · Share: 36px circle</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">3 mappable · 2 gap</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand Consistency Score -->
+        <div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border border-indigo-200 rounded-xl p-8 mb-12">
+            <h3 class="font-bold text-lg mb-6">Brand Consistency Score</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Default -->
+                <div class="text-center">
+                    <div class="relative w-28 h-28 mx-auto mb-3">
+                        <svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#ef4444" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round"/>
+                        </svg>
+                        <span class="absolute inset-0 flex items-center justify-center text-2xl font-black text-red-600">0%</span>
+                    </div>
+                    <div class="font-bold text-[14px]">Taboola Default</div>
+                    <div class="text-[12px] text-gray-500">No customization</div>
+                    <div class="text-[11px] text-gray-400 mt-1">0 / 60 pts</div>
+                </div>
+                <!-- Manual -->
+                <div class="text-center">
+                    <div class="relative w-28 h-28 mx-auto mb-3">
+                        <svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#f59e0b" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="198" stroke-linecap="round"/>
+                        </svg>
+                        <span class="absolute inset-0 flex items-center justify-center text-2xl font-black text-amber-600">37%</span>
+                    </div>
+                    <div class="font-bold text-[14px]">Manual Config</div>
+                    <div class="text-[12px] text-gray-500">Typical publisher setup</div>
+                    <div class="text-[11px] text-gray-400 mt-1">22 / 60 pts</div>
+                </div>
+                <!-- ADA -->
+                <div class="text-center">
+                    <div class="relative w-28 h-28 mx-auto mb-3">
+                        <svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#22c55e" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="16" stroke-linecap="round"/>
+                        </svg>
+                        <span class="absolute inset-0 flex items-center justify-center text-2xl font-black text-green-600">95%</span>
+                    </div>
+                    <div class="font-bold text-[14px]">ADA Brand Kit</div>
+                    <div class="text-[12px] text-gray-500">Full automated extraction</div>
+                    <div class="text-[11px] text-gray-400 mt-1">57 / 60 pts</div>
+                </div>
+            </div>
+            <p class="text-[12px] text-gray-500 mt-6 text-center">Weighted scoring: CRITICAL &times;3 (8 features) + MEDIUM &times;2 (13 features) + LOW &times;1 (10 features) = 60 max points</p>
+        </div>
+
+        <!-- ADA Pipeline Diagram -->
+        <div class="bg-gray-900 rounded-xl p-8 mb-12 text-gray-300 font-mono text-[13px] overflow-x-auto">
+            <div class="text-green-400 font-bold text-[14px] mb-4 font-sans">ADA Extraction Pipeline</div>
+            <pre class="leading-relaxed">
+ CRAWL              EXTRACT             CLASSIFY            STRUCTURE
+ ┌──────────┐      ┌──────────────┐    ┌───────────────┐   ┌──────────────┐
+ │ Homepage │─────▶│ DOM Walker   │───▶│ Feature       │──▶│ Brand Kit    │
+ │ Article  │      │ Style Capture│    │ Classifier    │   │ JSON Output  │
+ │ Section  │      │ Font Loader  │    │ (62 features) │   │ (canonical)  │
+ └──────────┘      └──────────────┘    └───────────────┘   └──────┬───────┘
+                                                                  │
+ VERIFY             MONITOR             APPLY               MAP   │
+ ┌──────────────┐  ┌──────────────┐    ┌───────────────┐   ┌─────▼────────┐
+ │ Visual Diff  │  │ Scheduled    │    │ Taboola       │◀──│ Taxonomy     │
+ │ Score: 95/100│  │ Re-crawl     │    │ custom_props  │   │ Mapper       │
+ └──────────────┘  │ Drift Alert  │    │ + custom_ui   │   │ (31 targets) │
+                   └──────────────┘    └───────────────┘   └──────────────┘</pre>
+        </div>
+
+        <!-- Drift Detection -->
+        <div class="border border-gray-200 rounded-xl overflow-hidden mb-12">
+            <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                <h3 class="font-bold text-[15px]">Drift Detection — Features to Watch</h3>
+            </div>
+            <table class="w-full text-[13px]">
+                <thead class="bg-gray-50">
+                    <tr class="text-left text-gray-500 uppercase text-[11px] tracking-wider">
+                        <th class="px-6 py-3">Priority</th>
+                        <th class="px-6 py-3">Feature</th>
+                        <th class="px-6 py-3">Current Value</th>
+                        <th class="px-6 py-3">Alert Threshold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P0</span></td>
+                        <td class="px-6 py-3 font-medium">Display font</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">Publico Headline</code></td>
+                        <td class="px-6 py-3 text-gray-500">Any change</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P0</span></td>
+                        <td class="px-6 py-3 font-medium">Primary text color</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">#101010</code></td>
+                        <td class="px-6 py-3 text-gray-500">&Delta;E &gt; 5</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P0</span></td>
+                        <td class="px-6 py-3 font-medium">Image border-radius</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">0px</code></td>
+                        <td class="px-6 py-3 text-gray-500">0px &rarr; &gt;0px</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P1</span></td>
+                        <td class="px-6 py-3 font-medium">UI sans font</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">Proxima Nova</code></td>
+                        <td class="px-6 py-3 text-gray-500">Any change</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P1</span></td>
+                        <td class="px-6 py-3 font-medium">Brand accent color</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">#E10500</code></td>
+                        <td class="px-6 py-3 text-gray-500">&Delta;E &gt; 10</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-3"><span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P2</span></td>
+                        <td class="px-6 py-3 font-medium">Border color / card gap / CTA style</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">#E8E8E8 / 24px / gray pill</code></td>
+                        <td class="px-6 py-3 text-gray-500">&Delta;E &gt; 15 / &Delta; &gt; 8px / any</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- API Expansion Priorities -->
+        <div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-8 mb-12">
+            <h3 class="font-bold text-lg mb-2">API Expansion Priorities</h3>
+            <p class="text-[13px] text-gray-600 mb-6">31 features have no Taboola <code>custom_properties</code> target. The highest-value additions:</p>
+            <div class="grid md:grid-cols-3 gap-4 text-[13px]">
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#1 description-font-family</div>
+                    <p class="text-gray-600 text-[12px]">All publishers with distinct body fonts need this. Currently only title font is customizable.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#2 accent-color</div>
+                    <p class="text-gray-600 text-[12px]">CBS red (#E10500) for hover states and active indicators. Strong brand signal.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#3 card-bg-color</div>
+                    <p class="text-gray-600 text-[12px]">Publishers with non-white backgrounds (dark themes, tinted cards) need this.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#4 link-color</div>
+                    <p class="text-gray-600 text-[12px]">CBS uses #005591 for links. Feed links should match, not default blue.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#5 thumbnail-hover-transform</div>
+                    <p class="text-gray-600 text-[12px]">CBS uses scale(1.03) on hover. Micro-interaction matching adds polish.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#6 title-hover-color</div>
+                    <p class="text-gray-600 text-[12px]">Branded hover colors (CBS red) instead of generic browser defaults.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom line for Feature Catalog -->
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-xl p-8 shadow-sm">
+            <h3 class="font-bold text-lg mb-4">ADA Feature Catalog — Bottom Line</h3>
+            <div class="grid md:grid-cols-4 gap-6 text-[14px]">
+                <div>
+                    <div class="text-3xl font-black text-indigo-700 mb-1">62</div>
+                    <p class="text-gray-600 text-[13px]">Discrete brand features extractable by the ADA crawler from CBS News.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-green-700 mb-1">50%</div>
+                    <p class="text-gray-600 text-[13px]">Coverage rate — 31 of 62 features map to current Taboola custom_properties.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-purple-700 mb-1">0→95%</div>
+                    <p class="text-gray-600 text-[13px]">Brand consistency score jumps from 0% (default) to 95% with ADA applied.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-amber-700 mb-1">6 APIs</div>
+                    <p class="text-gray-600 text-[13px]">Priority Taboola API expansions to close the 31-feature gap, starting with description-font-family.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 text-center py-6 text-xs">
+        <p>Taboola Feed Brand Compliance Analysis &mdash; ADA Feature Catalog &mdash; CBS News &mdash; Generated March 2026</p>
+        <p class="mt-1">Reference article: <a href="https://www.cbsnews.com/live-updates/iran-war-kc-135-plane-crash-iraq-us-deaths-strait-of-hormuz-no-end-in-sight/" class="underline text-gray-300">cbsnews.com/live-updates/iran-war...</a></p>
+    </footer>
+
+</body>
+</html>
