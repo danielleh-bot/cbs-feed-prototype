@@ -203,6 +203,7 @@
                 <a href="#visual-comparison" class="hover:text-gray-900">Before / After</a>
                 <a href="#property-audit" class="hover:text-gray-900">Property Audit</a>
                 <a href="#crawler-advantages" class="hover:text-gray-900">Crawler Advantages</a>
+                <a href="#feature-catalog" class="hover:text-gray-900">ADA Feature Catalog</a>
             </nav>
         </div>
     </div>
@@ -807,9 +808,384 @@
         </div>
     </section>
 
+    <!-- ========== ADA FEATURE CATALOG SECTION ========== -->
+    <section id="feature-catalog" class="max-w-6xl mx-auto px-4 py-16">
+        <div class="mb-10">
+            <div class="inline-block bg-indigo-100 text-indigo-800 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">ADA Feature Catalog</div>
+            <h2 class="text-3xl font-black mb-3">Automated Design Adaptation — Full Feature Extraction</h2>
+            <p class="text-gray-600 max-w-3xl">The ADA pipeline catalogs <strong>62 discrete brand features</strong> across 8 categories. The previous analysis identified 14 divergent properties; this catalog inventories every extractable feature, including those Taboola doesn't yet support.</p>
+        </div>
+
+        <!-- Summary Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-5 text-center border border-indigo-200">
+                <div class="text-4xl font-black text-indigo-700">62</div>
+                <div class="text-xs text-indigo-600 font-semibold mt-1 uppercase tracking-wide">Features Extracted</div>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-5 text-center border border-green-200">
+                <div class="text-4xl font-black text-green-700">31</div>
+                <div class="text-xs text-green-600 font-semibold mt-1 uppercase tracking-wide">Mappable to Taboola</div>
+            </div>
+            <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl p-5 text-center border border-amber-200">
+                <div class="text-4xl font-black text-amber-700">31</div>
+                <div class="text-xs text-amber-600 font-semibold mt-1 uppercase tracking-wide">API Gap (No Target)</div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 text-center border border-purple-200">
+                <div class="text-4xl font-black text-purple-700">95%</div>
+                <div class="text-xs text-purple-600 font-semibold mt-1 uppercase tracking-wide">Brand Score (ADA)</div>
+            </div>
+        </div>
+
+        <!-- Category Breakdown -->
+        <h3 class="text-xl font-bold mb-6">Feature Catalog by Category</h3>
+        <div class="grid md:grid-cols-2 gap-4 mb-12">
+            <!-- Typography -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Typography</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">18 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Display font: <code class="text-indigo-700 bg-indigo-50 px-1 rounded text-[12px]">Publico Headline</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">UI sans: <code class="text-indigo-700 bg-indigo-50 px-1 rounded text-[12px]">Proxima Nova</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Body serif: <code class="text-indigo-700 bg-indigo-50 px-1 rounded text-[12px]">TTNorms Pro Serif</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">7-level hierarchy (h1→caption) with sizes, weights, transforms</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">3 derived rules: serif-for-editorial, sans-for-UI, uppercase-metadata</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">12 mappable · 6 gap</div>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Color Palette</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">12 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#E10500"></span>
+                        <span class="text-gray-700">Brand Red <code class="text-[11px] text-gray-500">#E10500</code> — Live badges, accents</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#101010"></span>
+                        <span class="text-gray-700">Near Black <code class="text-[11px] text-gray-500">#101010</code> — Primary text, logo</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#181818"></span>
+                        <span class="text-gray-700">Charcoal <code class="text-[11px] text-gray-500">#181818</code> — Headlines</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#5F5F5F"></span>
+                        <span class="text-gray-700">Mid Gray <code class="text-[11px] text-gray-500">#5F5F5F</code> — Secondary text</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-300 flex-shrink-0" style="background:#E8E8E8"></span>
+                        <span class="text-gray-700">Border Gray <code class="text-[11px] text-gray-500">#E8E8E8</code> — Dividers</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded border border-gray-200 flex-shrink-0" style="background:#005591"></span>
+                        <span class="text-gray-700">Link Blue <code class="text-[11px] text-gray-500">#005591</code> + 2 functional colors</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">7 mappable · 5 gap</div>
+                </div>
+            </div>
+
+            <!-- Spacing & Layout -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Spacing &amp; Layout</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">10 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Page max-width: 1240px / 1400px (nav)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Content ratio: 68% article / 32% sidebar</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Card gap: 24px · Column gap: 40px</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Nav heights: 56px (primary) / 44px (secondary)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Top brand bar: 31px solid #101010</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">5 mappable · 5 gap</div>
+                </div>
+            </div>
+
+            <!-- Image Treatment -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Image Treatment</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">6 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Border-radius: <strong>0px</strong> (sharp corners everywhere)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Aspect ratios: 16:9 (hero) / 16:10 (cards)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Object-fit: cover · Hover: scale(1.03) ease 0.3s</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">3 mappable · 3 gap</div>
+                </div>
+            </div>
+
+            <!-- Interactive States -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Interactive States</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">5 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Link hover: <span style="color:#E10500">#E10500</span> (CBS red)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Title hover: underline · Button hover bg: #F2F2F2</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Active tab: 3px bottom border #101010</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">1 mappable · 4 gap</div>
+                </div>
+            </div>
+
+            <!-- Component Patterns -->
+            <div class="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-[15px]">Component Patterns</h4>
+                    <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded">5 features</span>
+                </div>
+                <div class="space-y-2 text-[13px]">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">CTA: neutral gray pill <code class="text-[11px]">#4b5563 / 9999px</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Sponsored badge: dark bg <code class="text-[11px]">#101010 / uppercase / "Paid"</code></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 flex-shrink-0"></span>
+                        <span class="text-gray-700">Separator: 1px solid #E8E8E8 · Share: 36px circle</span>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-500">3 mappable · 2 gap</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand Consistency Score -->
+        <div class="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border border-indigo-200 rounded-xl p-8 mb-12">
+            <h3 class="font-bold text-lg mb-6">Brand Consistency Score</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Default -->
+                <div class="text-center">
+                    <div class="relative w-28 h-28 mx-auto mb-3">
+                        <svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#ef4444" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round"/>
+                        </svg>
+                        <span class="absolute inset-0 flex items-center justify-center text-2xl font-black text-red-600">0%</span>
+                    </div>
+                    <div class="font-bold text-[14px]">Taboola Default</div>
+                    <div class="text-[12px] text-gray-500">No customization</div>
+                    <div class="text-[11px] text-gray-400 mt-1">0 / 60 pts</div>
+                </div>
+                <!-- Manual -->
+                <div class="text-center">
+                    <div class="relative w-28 h-28 mx-auto mb-3">
+                        <svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#f59e0b" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="198" stroke-linecap="round"/>
+                        </svg>
+                        <span class="absolute inset-0 flex items-center justify-center text-2xl font-black text-amber-600">37%</span>
+                    </div>
+                    <div class="font-bold text-[14px]">Manual Config</div>
+                    <div class="text-[12px] text-gray-500">Typical publisher setup</div>
+                    <div class="text-[11px] text-gray-400 mt-1">22 / 60 pts</div>
+                </div>
+                <!-- ADA -->
+                <div class="text-center">
+                    <div class="relative w-28 h-28 mx-auto mb-3">
+                        <svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#22c55e" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="16" stroke-linecap="round"/>
+                        </svg>
+                        <span class="absolute inset-0 flex items-center justify-center text-2xl font-black text-green-600">95%</span>
+                    </div>
+                    <div class="font-bold text-[14px]">ADA Brand Kit</div>
+                    <div class="text-[12px] text-gray-500">Full automated extraction</div>
+                    <div class="text-[11px] text-gray-400 mt-1">57 / 60 pts</div>
+                </div>
+            </div>
+            <p class="text-[12px] text-gray-500 mt-6 text-center">Weighted scoring: CRITICAL &times;3 (8 features) + MEDIUM &times;2 (13 features) + LOW &times;1 (10 features) = 60 max points</p>
+        </div>
+
+        <!-- ADA Pipeline Diagram -->
+        <div class="bg-gray-900 rounded-xl p-8 mb-12 text-gray-300 font-mono text-[13px] overflow-x-auto">
+            <div class="text-green-400 font-bold text-[14px] mb-4 font-sans">ADA Extraction Pipeline</div>
+            <pre class="leading-relaxed">
+ CRAWL              EXTRACT             CLASSIFY            STRUCTURE
+ ┌──────────┐      ┌──────────────┐    ┌───────────────┐   ┌──────────────┐
+ │ Homepage │─────▶│ DOM Walker   │───▶│ Feature       │──▶│ Brand Kit    │
+ │ Article  │      │ Style Capture│    │ Classifier    │   │ JSON Output  │
+ │ Section  │      │ Font Loader  │    │ (62 features) │   │ (canonical)  │
+ └──────────┘      └──────────────┘    └───────────────┘   └──────┬───────┘
+                                                                  │
+ VERIFY             MONITOR             APPLY               MAP   │
+ ┌──────────────┐  ┌──────────────┐    ┌───────────────┐   ┌─────▼────────┐
+ │ Visual Diff  │  │ Scheduled    │    │ Taboola       │◀──│ Taxonomy     │
+ │ Score: 95/100│  │ Re-crawl     │    │ custom_props  │   │ Mapper       │
+ └──────────────┘  │ Drift Alert  │    │ + custom_ui   │   │ (31 targets) │
+                   └──────────────┘    └───────────────┘   └──────────────┘</pre>
+        </div>
+
+        <!-- Drift Detection -->
+        <div class="border border-gray-200 rounded-xl overflow-hidden mb-12">
+            <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                <h3 class="font-bold text-[15px]">Drift Detection — Features to Watch</h3>
+            </div>
+            <table class="w-full text-[13px]">
+                <thead class="bg-gray-50">
+                    <tr class="text-left text-gray-500 uppercase text-[11px] tracking-wider">
+                        <th class="px-6 py-3">Priority</th>
+                        <th class="px-6 py-3">Feature</th>
+                        <th class="px-6 py-3">Current Value</th>
+                        <th class="px-6 py-3">Alert Threshold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P0</span></td>
+                        <td class="px-6 py-3 font-medium">Display font</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">Publico Headline</code></td>
+                        <td class="px-6 py-3 text-gray-500">Any change</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P0</span></td>
+                        <td class="px-6 py-3 font-medium">Primary text color</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">#101010</code></td>
+                        <td class="px-6 py-3 text-gray-500">&Delta;E &gt; 5</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P0</span></td>
+                        <td class="px-6 py-3 font-medium">Image border-radius</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">0px</code></td>
+                        <td class="px-6 py-3 text-gray-500">0px &rarr; &gt;0px</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P1</span></td>
+                        <td class="px-6 py-3 font-medium">UI sans font</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">Proxima Nova</code></td>
+                        <td class="px-6 py-3 text-gray-500">Any change</td>
+                    </tr>
+                    <tr class="border-b border-gray-100">
+                        <td class="px-6 py-3"><span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P1</span></td>
+                        <td class="px-6 py-3 font-medium">Brand accent color</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">#E10500</code></td>
+                        <td class="px-6 py-3 text-gray-500">&Delta;E &gt; 10</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-3"><span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full">P2</span></td>
+                        <td class="px-6 py-3 font-medium">Border color / card gap / CTA style</td>
+                        <td class="px-6 py-3"><code class="text-[12px]">#E8E8E8 / 24px / gray pill</code></td>
+                        <td class="px-6 py-3 text-gray-500">&Delta;E &gt; 15 / &Delta; &gt; 8px / any</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- API Expansion Priorities -->
+        <div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-8 mb-12">
+            <h3 class="font-bold text-lg mb-2">API Expansion Priorities</h3>
+            <p class="text-[13px] text-gray-600 mb-6">31 features have no Taboola <code>custom_properties</code> target. The highest-value additions:</p>
+            <div class="grid md:grid-cols-3 gap-4 text-[13px]">
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#1 description-font-family</div>
+                    <p class="text-gray-600 text-[12px]">All publishers with distinct body fonts need this. Currently only title font is customizable.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#2 accent-color</div>
+                    <p class="text-gray-600 text-[12px]">CBS red (#E10500) for hover states and active indicators. Strong brand signal.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#3 card-bg-color</div>
+                    <p class="text-gray-600 text-[12px]">Publishers with non-white backgrounds (dark themes, tinted cards) need this.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#4 link-color</div>
+                    <p class="text-gray-600 text-[12px]">CBS uses #005591 for links. Feed links should match, not default blue.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#5 thumbnail-hover-transform</div>
+                    <p class="text-gray-600 text-[12px]">CBS uses scale(1.03) on hover. Micro-interaction matching adds polish.</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-amber-200">
+                    <div class="font-bold text-amber-800 mb-1">#6 title-hover-color</div>
+                    <p class="text-gray-600 text-[12px]">Branded hover colors (CBS red) instead of generic browser defaults.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom line for Feature Catalog -->
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-xl p-8 shadow-sm">
+            <h3 class="font-bold text-lg mb-4">ADA Feature Catalog — Bottom Line</h3>
+            <div class="grid md:grid-cols-4 gap-6 text-[14px]">
+                <div>
+                    <div class="text-3xl font-black text-indigo-700 mb-1">62</div>
+                    <p class="text-gray-600 text-[13px]">Discrete brand features extractable by the ADA crawler from CBS News.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-green-700 mb-1">50%</div>
+                    <p class="text-gray-600 text-[13px]">Coverage rate — 31 of 62 features map to current Taboola custom_properties.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-purple-700 mb-1">0→95%</div>
+                    <p class="text-gray-600 text-[13px]">Brand consistency score jumps from 0% (default) to 95% with ADA applied.</p>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-amber-700 mb-1">6 APIs</div>
+                    <p class="text-gray-600 text-[13px]">Priority Taboola API expansions to close the 31-feature gap, starting with description-font-family.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 text-center py-6 text-xs">
-        <p>Taboola Feed Brand Compliance Analysis &mdash; CBS News &mdash; Generated March 2026</p>
+        <p>Taboola Feed Brand Compliance Analysis &mdash; ADA Feature Catalog &mdash; CBS News &mdash; Generated March 2026</p>
         <p class="mt-1">Reference article: <a href="https://www.cbsnews.com/live-updates/iran-war-kc-135-plane-crash-iraq-us-deaths-strait-of-hormuz-no-end-in-sight/" class="underline text-gray-300">cbsnews.com/live-updates/iran-war...</a></p>
     </footer>
 
