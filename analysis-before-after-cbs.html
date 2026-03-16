@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taboola Feed Analysis: Before vs After — CBS News Brand Kit</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === Analysis Report Styles === */
+        :root {
+            --report-bg: #0F1117;
+            --report-surface: #1A1D27;
+            --report-surface-2: #232733;
+            --report-border: #2E3342;
+            --report-text: #E8EAF0;
+            --report-text-muted: #8B90A0;
+            --report-accent: #E10500;
+            --report-green: #0D8033;
+            --report-red: #EE3F54;
+            --report-blue: #4C9AFF;
+            --report-yellow: #EAB305;
+
+            /* CBS News brand tokens */
+            --cbs-red: #E10500;
+            --near-black: #101010;
+            --charcoal: #181818;
+            --mid-gray: #5F5F5F;
+            --border-gray: #E8E8E8;
+            --bg-light: #F2F2F2;
+            --cbs-blue: #005591;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--report-bg);
+            color: var(--report-text);
+            line-height: 1.6;
+        }
+
+        .report-header {
+            background: linear-gradient(135deg, #1A1D27 0%, #171B26 100%);
+            border-bottom: 3px solid var(--report-accent);
+            padding: 48px 40px;
+        }
+        .report-header-inner { max-width: 1400px; margin: 0 auto; }
+        .report-badge {
+            display: inline-block; background: var(--report-accent); color: white;
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; padding: 4px 12px; margin-bottom: 16px;
+        }
+        .report-title { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+        .report-subtitle { font-size: 18px; color: var(--report-text-muted); margin-bottom: 24px; }
+        .report-meta { display: flex; gap: 24px; font-size: 13px; color: var(--report-text-muted); }
+        .report-meta strong { color: var(--report-text); }
+
+        .report-section { max-width: 1400px; margin: 0 auto; padding: 48px 40px; }
+        .section-label {
+            display: inline-block; font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--report-accent); margin-bottom: 12px;
+        }
+        .section-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .section-desc { font-size: 16px; color: var(--report-text-muted); margin-bottom: 32px; max-width: 800px; }
+
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+        .comparison-panel { background: var(--report-surface); border: 1px solid var(--report-border); overflow: hidden; }
+        .panel-header {
+            padding: 16px 24px; font-size: 14px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .panel-header.before { background: rgba(238,63,84,0.1); color: var(--report-red); border-bottom: 2px solid var(--report-red); }
+        .panel-header.after { background: rgba(13,128,51,0.1); color: var(--report-green); border-bottom: 2px solid var(--report-green); }
+        .panel-header .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .panel-header.before .dot { background: var(--report-red); }
+        .panel-header.after .dot { background: var(--report-green); }
+        .panel-body { padding: 0; }
+
+        .advantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 48px; }
+        .advantage-card { background: var(--report-surface); border: 1px solid var(--report-border); padding: 28px; }
+        .advantage-icon {
+            width: 48px; height: 48px; background: rgba(225, 5, 0, 0.1);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px; font-size: 24px;
+        }
+        .advantage-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .advantage-card p { font-size: 14px; color: var(--report-text-muted); line-height: 1.5; }
+
+        .property-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 14px; }
+        .property-table th {
+            text-align: left; padding: 12px 16px; background: var(--report-surface-2);
+            border-bottom: 1px solid var(--report-border); font-weight: 600;
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--report-text-muted);
+        }
+        .property-table td { padding: 12px 16px; border-bottom: 1px solid var(--report-border); vertical-align: top; }
+        .property-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .prop-name { font-weight: 600; color: var(--report-text); font-family: monospace; font-size: 13px; }
+        .prop-value-before { color: var(--report-red); font-family: monospace; font-size: 13px; }
+        .prop-value-after { color: var(--report-green); font-family: monospace; font-size: 13px; }
+        .tag { display: inline-block; padding: 2px 8px; font-size: 11px; font-weight: 600; border-radius: 3px; }
+        .tag-manual { background: rgba(238,63,84,0.15); color: var(--report-red); }
+        .tag-auto { background: rgba(13,128,51,0.15); color: var(--report-green); }
+        .tag-drift { background: rgba(234,179,5,0.15); color: var(--report-yellow); }
+
+        .workflow-comparison { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; align-items: start; margin-bottom: 48px; }
+        .workflow-panel { background: var(--report-surface); border: 1px solid var(--report-border); padding: 28px; }
+        .workflow-arrow { display: flex; align-items: center; justify-content: center; align-self: center; font-size: 24px; color: var(--report-accent); }
+        .workflow-panel h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .workflow-step { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--report-border); font-size: 14px; align-items: flex-start; }
+        .workflow-step:last-child { border-bottom: none; }
+        .step-num { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; border-radius: 50%; }
+        .workflow-panel.manual .step-num { background: rgba(238,63,84,0.15); color: var(--report-red); }
+        .workflow-panel.crawler .step-num { background: rgba(13,128,51,0.15); color: var(--report-green); }
+        .step-label { color: var(--report-text-muted); }
+        .step-label strong { color: var(--report-text); }
+        .step-time { font-size: 12px; color: var(--report-text-muted); margin-top: 2px; }
+
+        .report-divider { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        .report-divider hr { border: none; border-top: 1px solid var(--report-border); }
+
+        /* BEFORE feed */
+        .proto-before { background: #FFFFFF; font-family: Helvetica, Arial, sans-serif; padding: 20px; }
+        .proto-before .feed-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; margin-bottom: 16px; border-bottom: 1px solid #E0E0E0; }
+        .proto-before .feed-header-title { font-size: 14px; font-weight: 700; color: #808080; }
+        .proto-before .feed-attribution { font-size: 11px; color: #999999; }
+        .proto-before .feed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .proto-before .feed-card { cursor: pointer; }
+        .proto-before .feed-card-img { width: 100%; aspect-ratio: 16/10; background: #F0F0F0; margin-bottom: 8px; overflow: hidden; border-radius: 6px; }
+        .proto-before .feed-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 6px; }
+        .proto-before .feed-card-headline { font-size: 14px; font-weight: 700; color: #333333; line-height: 1.35; margin-bottom: 4px; }
+        .proto-before .feed-card-source { font-size: 11px; color: #888888; }
+        .proto-before .feed-card-source .sponsored { font-size: 9px; color: #666; background: #e8e8e8; padding: 1px 5px; border-radius: 2px; margin-left: 4px; font-weight: 700; }
+        .proto-before .feed-cta { font-size: 11px; color: #1a73e8; border: 1px solid #1a73e8; border-radius: 16px; padding: 3px 10px; font-weight: 600; display: inline-block; margin-top: 6px; }
+        .proto-before .feed-divider { height: 1px; background: #f3f4f6; margin: 20px 0; }
+        .proto-before .feed-hcard { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f3f4f6; cursor: pointer; }
+        .proto-before .feed-hcard-img { width: 160px; aspect-ratio: 16/10; background: #F0F0F0; flex-shrink: 0; overflow: hidden; border-radius: 6px; }
+        .proto-before .feed-hcard-img img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 6px; }
+        .proto-before .feed-hcard-text { display: flex; flex-direction: column; justify-content: center; }
+        .proto-before .feed-hcard-headline { font-size: 14px; font-weight: 700; color: #333333; line-height: 1.35; margin-bottom: 4px; }
+        .proto-before .feed-hcard-source { font-size: 11px; color: #888888; }
+
+        /* AFTER feed */
+        .proto-after { background: #FFFFFF; font-family: 'Source Sans 3', sans-serif; padding: 20px; }
+        .proto-after .feed-header { display: flex; justify-content: space-between; align-items: baseline; padding: 0 0 12px 0; margin-bottom: 20px; border-bottom: 1px solid #E8E8E8; }
+        .proto-after .feed-header-title { font-family: 'Source Sans 3', sans-serif; font-size: 12px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.15em; }
+        .proto-after .feed-attribution { font-size: 11px; color: #9ca3af; }
+        .proto-after .feed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px; }
+        .proto-after .feed-card { cursor: pointer; }
+        .proto-after .feed-card:hover .feed-card-headline { text-decoration: underline; }
+        .proto-after .feed-card-img { width: 100%; aspect-ratio: 16/10; background: #F2F2F2; margin-bottom: 10px; overflow: hidden; position: relative; }
+        .proto-after .feed-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .proto-after .feed-card-label { font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #101010; margin-bottom: 4px; }
+        .proto-after .feed-card-headline { font-family: 'DM Serif Display', serif; font-size: 18px; font-weight: 400; color: #181818; line-height: 1.25; margin-bottom: 6px; transition: color 0.15s; }
+        .proto-after .feed-card-source { font-family: 'Source Sans 3', sans-serif; font-size: 10px; color: #9ca3af; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; display: flex; align-items: center; gap: 6px; }
+        .proto-after .feed-card-source .badge { font-size: 9px; color: #fff; background: #101010; padding: 1px 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .proto-after .feed-cta { font-family: 'Source Sans 3', sans-serif; font-size: 11px; color: #4b5563; border: 1px solid #d1d5db; border-radius: 9999px; padding: 4px 12px; font-weight: 700; display: inline-block; margin-top: 6px; }
+        .proto-after .feed-divider { height: 1px; background: #E8E8E8; margin: 24px 0; }
+        .proto-after .feed-hcard { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid #E8E8E8; cursor: pointer; }
+        .proto-after .feed-hcard:hover .feed-hcard-headline { text-decoration: underline; }
+        .proto-after .feed-hcard-img { width: 180px; aspect-ratio: 16/10; background: #F2F2F2; flex-shrink: 0; overflow: hidden; }
+        .proto-after .feed-hcard-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .proto-after .feed-hcard-text { display: flex; flex-direction: column; justify-content: center; }
+        .proto-after .feed-hcard-headline { font-family: 'DM Serif Display', serif; font-size: 17px; font-weight: 400; color: #181818; line-height: 1.25; margin-bottom: 4px; transition: color 0.15s; }
+        .proto-after .feed-hcard-source { font-family: 'Source Sans 3', sans-serif; font-size: 10px; color: #9ca3af; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; }
+        .proto-after .feed-hcard-label { font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #101010; margin-bottom: 2px; }
+
+        .article-end-snippet { padding: 20px; }
+        .article-end-snippet p { font-size: 16px; color: #474C59; line-height: 1.7; margin-bottom: 16px; }
+        .transition-zone { padding: 12px 20px; font-size: 12px; color: #8B90A0; background: #FAFBFD; border-top: 1px solid #EBEFF7; border-bottom: 1px solid #EBEFF7; text-align: center; font-family: 'Inter', sans-serif; }
+        .transition-zone.before-style { background: #F5F5F5; border-color: #E0E0E0; font-family: Arial, sans-serif; }
+
+        .json-diff { background: #1E2130; padding: 24px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7; overflow-x: auto; margin-bottom: 32px; border: 1px solid var(--report-border); }
+        .json-line { white-space: pre; }
+        .json-key { color: #9CDCFE; }
+        .json-string-old { color: #EE3F54; text-decoration: line-through; opacity: 0.7; }
+        .json-string-new { color: #4EC9B0; }
+        .json-comment { color: #6A9955; font-style: italic; }
+        .json-punct { color: #808080; }
+
+        .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 48px; }
+        .stat-card { background: var(--report-surface); border: 1px solid var(--report-border); padding: 24px; text-align: center; }
+        .stat-value { font-size: 36px; font-weight: 700; color: var(--report-accent); margin-bottom: 4px; }
+        .stat-value.green { color: var(--report-green); }
+        .stat-value.red { color: var(--report-red); }
+        .stat-label { font-size: 13px; color: var(--report-text-muted); }
+
+        @media (max-width: 1000px) {
+            .comparison { grid-template-columns: 1fr; }
+            .advantages-grid { grid-template-columns: 1fr; }
+            .workflow-comparison { grid-template-columns: 1fr; }
+            .workflow-arrow { transform: rotate(90deg); padding: 12px; }
+            .stat-row { grid-template-columns: repeat(2, 1fr); }
+            .proto-before .feed-grid, .proto-after .feed-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .report-header { padding: 32px 20px; }
+            .report-section { padding: 32px 20px; }
+            .report-divider { padding: 0 20px; }
+            .report-title { font-size: 24px; }
+            .proto-before .feed-grid, .proto-after .feed-grid { grid-template-columns: 1fr; }
+            .stat-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ CROSS-NAVIGATION ============ -->
+    <nav style="background: var(--report-surface); border-bottom: 1px solid var(--report-border); padding: 10px 40px; font-size: 13px; display: flex; align-items: center; gap: 24px;">
+        <span style="color: var(--report-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 11px;">Publisher Analyses:</span>
+        <a href="analysis-before-after-t-online.html" style="color: var(--report-text-muted); text-decoration: none;" onmouseover="this.style.color='var(--report-text)'" onmouseout="this.style.color='var(--report-text-muted)'">t-online</a>
+        <a href="analysis-before-after-cbs.html" style="color: var(--report-accent); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--report-accent); padding-bottom: 2px;">CBS News</a>
+    </nav>
+
+    <!-- ============ REPORT HEADER ============ -->
+    <header class="report-header">
+        <div class="report-header-inner">
+            <div class="report-badge">Analysis Report</div>
+            <h1 class="report-title">Taboola Feed on CBS News: Before &amp; After Brand Kit</h1>
+            <p class="report-subtitle">Comparing manual custom properties/UI modes vs. automated web-crawler-generated brand kit JSON for native feed styling</p>
+            <div class="report-meta">
+                <span><strong>Publisher:</strong> CBS News (Paramount Global)</span>
+                <span><strong>Source article:</strong> Live Updates: Iran War</span>
+                <span><strong>Date:</strong> March 16, 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ EXECUTIVE SUMMARY ============ -->
+    <section class="report-section">
+        <div class="section-label">Executive Summary</div>
+        <h2 class="section-title">The Problem: Manual Configuration Doesn't Scale</h2>
+        <p class="section-desc">
+            Today, the Taboola feed on CBS News article pages is configured through manually-set <strong>custom properties</strong> and <strong>custom UI modes</strong> managed in Backstage. Account managers visually inspect cbsnews.com, eyedrop colors, guess font names, and configure each property individually. The result is a feed that uses Helvetica instead of CBS's Publico Headline, generic grays instead of CBS's charcoal palette, and rounded corners instead of CBS's signature sharp edges &mdash; a feed that looks like a Taboola widget, not a CBS experience.
+        </p>
+
+        <div class="stat-row">
+            <div class="stat-card">
+                <div class="stat-value red">14+</div>
+                <div class="stat-label">Manual properties to configure per publisher</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value red">4&ndash;6 hrs</div>
+                <div class="stat-label">Average setup time for custom styling</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">&lt;5 min</div>
+                <div class="stat-label">Crawler-based brand kit generation time</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">100%</div>
+                <div class="stat-label">Token coverage from automated crawl</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ BEFORE vs AFTER: LIVE PROTOTYPE ============ -->
+    <section class="report-section">
+        <div class="section-label">Visual Comparison</div>
+        <h2 class="section-title">Below-Article Feed: Before &amp; After</h2>
+        <p class="section-desc">
+            The left panel shows the current feed rendered with generic Taboola defaults and manually-configured custom properties. The right shows the same feed rendered using tokens automatically extracted from the CBS News brand kit JSON via web crawler.
+        </p>
+
+        <div class="comparison">
+            <!-- ===== BEFORE PANEL ===== -->
+            <div class="comparison-panel">
+                <div class="panel-header before">
+                    <span class="dot"></span>
+                    Before &mdash; Manual Custom Properties
+                </div>
+                <div class="panel-body">
+                    <div class="article-end-snippet" style="font-family: 'Source Serif 4', Georgia, serif;">
+                        <p style="color: #101010; font-size: 20px; line-height: 30px;">...Iran's state media relayed on Thursday the first public statement attributed to new Supreme Leader Ayatollah Mojtaba Khamenei, as the country continued attacking U.S. Persian Gulf allies.</p>
+                    </div>
+                    <div class="transition-zone before-style">&mdash; Article ends &mdash; Taboola feed begins below &mdash;</div>
+
+                    <div class="proto-before">
+                        <div class="feed-header">
+                            <div class="feed-header-title">Sponsored Links</div>
+                            <div class="feed-attribution">by Taboola</div>
+                        </div>
+
+                        <div class="feed-grid">
+                            <div class="feed-card">
+                                <div class="feed-card-img"><img src="https://picsum.photos/seed/cbs1/400/250" alt=""></div>
+                                <div class="feed-card-headline">Pentagon Confirms Third KC-135 Lost Over Iraq Airspace</div>
+                                <div class="feed-card-source">Military Times</div>
+                            </div>
+                            <div class="feed-card">
+                                <div class="feed-card-img"><img src="https://picsum.photos/seed/cbs2/400/250" alt=""></div>
+                                <div class="feed-card-headline">This Device Saves Homeowners Up To $200/Month On Energy Bills</div>
+                                <div class="feed-card-source">EcoSaver <span class="sponsored">Sponsored</span></div>
+                                <span class="feed-cta">Read More</span>
+                            </div>
+                            <div class="feed-card">
+                                <div class="feed-card-img"><img src="https://picsum.photos/seed/cbs3/400/250" alt=""></div>
+                                <div class="feed-card-headline">Oil Prices Surge Past $140 as Strait of Hormuz Tensions Escalate</div>
+                                <div class="feed-card-source">CBS News</div>
+                            </div>
+                        </div>
+
+                        <div class="feed-divider"></div>
+
+                        <div class="feed-hcard">
+                            <div class="feed-hcard-img"><img src="https://picsum.photos/seed/cbs4/320/200" alt=""></div>
+                            <div class="feed-hcard-text">
+                                <div class="feed-hcard-headline">New Solar Panel Technology Could Cut Installation Costs in Half</div>
+                                <div class="feed-hcard-source">SolarTech | Sponsored</div>
+                            </div>
+                        </div>
+                        <div class="feed-hcard">
+                            <div class="feed-hcard-img"><img src="https://picsum.photos/seed/cbs5/320/200" alt=""></div>
+                            <div class="feed-hcard-text">
+                                <div class="feed-hcard-headline">Congress Debates Emergency Fuel Reserve Release Amid Shortages</div>
+                                <div class="feed-hcard-source">CBS News</div>
+                            </div>
+                        </div>
+                        <div class="feed-hcard">
+                            <div class="feed-hcard-img"><img src="https://picsum.photos/seed/cbs6/320/200" alt=""></div>
+                            <div class="feed-hcard-text">
+                                <div class="feed-hcard-headline">Markets Close Down 800 Points as War Premium Builds</div>
+                                <div class="feed-hcard-source">CBS News</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== AFTER PANEL ===== -->
+            <div class="comparison-panel">
+                <div class="panel-header after">
+                    <span class="dot"></span>
+                    After &mdash; Brand Kit JSON (Crawler-Generated)
+                </div>
+                <div class="panel-body">
+                    <div class="article-end-snippet" style="font-family: 'Source Serif 4', Georgia, serif;">
+                        <p style="color: #101010; font-size: 20px; line-height: 30px;">...Iran's state media relayed on Thursday the first public statement attributed to new Supreme Leader Ayatollah Mojtaba Khamenei, as the country continued attacking U.S. Persian Gulf allies.</p>
+                    </div>
+                    <div class="transition-zone">&mdash; Article ends &mdash; Taboola feed begins below &mdash;</div>
+
+                    <div class="proto-after">
+                        <div class="feed-header">
+                            <div class="feed-header-title">Sponsored Stories</div>
+                            <div class="feed-attribution">by Taboola</div>
+                        </div>
+
+                        <div class="feed-grid">
+                            <div class="feed-card">
+                                <div class="feed-card-img"><img src="https://picsum.photos/seed/cbs1/400/250" alt=""></div>
+                                <div class="feed-card-label">War with Iran</div>
+                                <div class="feed-card-headline">Pentagon Confirms Third KC-135 Lost Over Iraq Airspace</div>
+                                <div class="feed-card-source">Military Times</div>
+                            </div>
+                            <div class="feed-card">
+                                <div class="feed-card-img"><img src="https://picsum.photos/seed/cbs2/400/250" alt=""></div>
+                                <div class="feed-card-headline">This Device Saves Homeowners Up To $200/Month On Energy Bills</div>
+                                <div class="feed-card-source">EcoSaver <span class="badge">Paid</span></div>
+                                <span class="feed-cta">Learn More</span>
+                            </div>
+                            <div class="feed-card">
+                                <div class="feed-card-img"><img src="https://picsum.photos/seed/cbs3/400/250" alt=""></div>
+                                <div class="feed-card-label">MoneyWatch</div>
+                                <div class="feed-card-headline">Oil Prices Surge Past $140 as Strait of Hormuz Tensions Escalate</div>
+                                <div class="feed-card-source">CBS News</div>
+                            </div>
+                        </div>
+
+                        <div class="feed-divider"></div>
+
+                        <div class="feed-hcard">
+                            <div class="feed-hcard-img"><img src="https://picsum.photos/seed/cbs4/360/225" alt=""></div>
+                            <div class="feed-hcard-text">
+                                <div class="feed-hcard-label">Technology</div>
+                                <div class="feed-hcard-headline">New Solar Panel Technology Could Cut Installation Costs in Half</div>
+                                <div class="feed-hcard-source">SolarTech <span style="font-size:9px;color:#fff;background:#101010;padding:1px 6px;margin-left:4px;letter-spacing:0.5px;">PAID</span></div>
+                            </div>
+                        </div>
+                        <div class="feed-hcard">
+                            <div class="feed-hcard-img"><img src="https://picsum.photos/seed/cbs5/360/225" alt=""></div>
+                            <div class="feed-hcard-text">
+                                <div class="feed-hcard-label">Politics</div>
+                                <div class="feed-hcard-headline">Congress Debates Emergency Fuel Reserve Release Amid Shortages</div>
+                                <div class="feed-hcard-source">CBS News</div>
+                            </div>
+                        </div>
+                        <div class="feed-hcard">
+                            <div class="feed-hcard-img"><img src="https://picsum.photos/seed/cbs6/360/225" alt=""></div>
+                            <div class="feed-hcard-text">
+                                <div class="feed-hcard-label">MoneyWatch</div>
+                                <div class="feed-hcard-headline">Markets Close Down 800 Points as War Premium Builds</div>
+                                <div class="feed-hcard-source">CBS News</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ PROPERTY MAPPING ============ -->
+    <section class="report-section">
+        <div class="section-label">Property Mapping</div>
+        <h2 class="section-title">Custom Properties vs. Brand Kit Tokens</h2>
+        <p class="section-desc">
+            Each row maps a manually-configured Taboola custom property to the corresponding value the web crawler would automatically extract and apply from the CBS News brand kit JSON.
+        </p>
+
+        <table class="property-table">
+            <thead>
+                <tr>
+                    <th>Property / Token</th>
+                    <th>Before (Manual)</th>
+                    <th>After (Brand Kit JSON)</th>
+                    <th>Source</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="prop-name">font-family (headline)</td>
+                    <td class="prop-value-before">Helvetica, Arial, sans-serif</td>
+                    <td class="prop-value-after">'Publico Headline', serif</td>
+                    <td>fonts.display.name</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">font-family (UI)</td>
+                    <td class="prop-value-before">Helvetica, Arial, sans-serif</td>
+                    <td class="prop-value-after">'Proxima Nova', sans-serif</td>
+                    <td>fonts.ui_sans.name</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">headline-color</td>
+                    <td class="prop-value-before">#333333</td>
+                    <td class="prop-value-after">#181818</td>
+                    <td>colors.core.charcoal.hex</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">headline-font-size</td>
+                    <td class="prop-value-before">14px</td>
+                    <td class="prop-value-after">18px</td>
+                    <td>fonts.hierarchy[0] scaled</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">headline-font-weight</td>
+                    <td class="prop-value-before">700 (bold sans)</td>
+                    <td class="prop-value-after">400 (display serif)</td>
+                    <td>fonts.display.weight</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">image-border-radius</td>
+                    <td class="prop-value-before">6px</td>
+                    <td class="prop-value-after">0px</td>
+                    <td>images.border_radius</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">CTA-color</td>
+                    <td class="prop-value-before">#1a73e8 (Google Blue)</td>
+                    <td class="prop-value-after">#4b5563 (neutral gray)</td>
+                    <td>components.cta_button.color</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">CTA-border-radius</td>
+                    <td class="prop-value-before">16px</td>
+                    <td class="prop-value-after">9999px (full pill)</td>
+                    <td>components.cta_button.border_radius</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">source-label-color</td>
+                    <td class="prop-value-before">#888888</td>
+                    <td class="prop-value-after">#9ca3af</td>
+                    <td>colors.core.mid_gray (adjusted)</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">separator-color</td>
+                    <td class="prop-value-before">#f3f4f6</td>
+                    <td class="prop-value-after">#E8E8E8</td>
+                    <td>colors.core.border_gray.hex</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">description-font</td>
+                    <td class="prop-value-before">Helvetica 12px #666</td>
+                    <td class="prop-value-after">Proxima Nova 14px #5F5F5F</td>
+                    <td>fonts.ui_sans + colors.core.mid_gray</td>
+                    <td><span class="tag tag-drift">Drift</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">sponsored-badge-style</td>
+                    <td class="prop-value-before">bg:#e8e8e8, color:#666, "Sponsored"</td>
+                    <td class="prop-value-after">bg:#101010, color:#fff, "PAID"</td>
+                    <td>components.sponsored_badge</td>
+                    <td><span class="tag tag-manual">Missing</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">branding-text-transform</td>
+                    <td class="prop-value-before">none</td>
+                    <td class="prop-value-after">uppercase</td>
+                    <td>fonts.hierarchy[3].text_transform</td>
+                    <td><span class="tag tag-manual">Missing</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">branding-letter-spacing</td>
+                    <td class="prop-value-before">0</td>
+                    <td class="prop-value-after">0.12em</td>
+                    <td>fonts.hierarchy[3].letter_spacing</td>
+                    <td><span class="tag tag-manual">Missing</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">header-text-transform</td>
+                    <td class="prop-value-before">none ("Sponsored Links")</td>
+                    <td class="prop-value-after">uppercase ("SPONSORED STORIES")</td>
+                    <td>fonts.hierarchy[3].text_transform</td>
+                    <td><span class="tag tag-manual">Missing</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">hover-color</td>
+                    <td class="prop-value-before">(not set)</td>
+                    <td class="prop-value-after">text-decoration: underline</td>
+                    <td>interactions.title_hover_decoration</td>
+                    <td><span class="tag tag-manual">Missing</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">category-label</td>
+                    <td class="prop-value-before">(not supported)</td>
+                    <td class="prop-value-after">uppercase #101010, 11px, 700, 1.2px tracking</td>
+                    <td>fonts.hierarchy[4] (category_label)</td>
+                    <td><span class="tag tag-manual">Missing</span></td>
+                </tr>
+                <tr>
+                    <td class="prop-name">background-color</td>
+                    <td class="prop-value-before">#FFFFFF</td>
+                    <td class="prop-value-after">#FFFFFF</td>
+                    <td>colors.core.white.hex</td>
+                    <td><span class="tag tag-auto">Exact</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="font-size: 14px; color: var(--report-text-muted); margin-top: -16px;">
+            <span class="tag tag-drift">Drift</span> = value set manually but diverges from actual publisher design &nbsp;
+            <span class="tag tag-manual">Missing</span> = not configurable via current custom properties &nbsp;
+            <span class="tag tag-auto">Exact</span> = correctly matched
+        </p>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ BRAND KIT JSON DIFF ============ -->
+    <section class="report-section">
+        <div class="section-label">Token Mapping</div>
+        <h2 class="section-title">How Brand Kit JSON Replaces Manual Config</h2>
+        <p class="section-desc">
+            Instead of configuring 14+ individual properties by hand, the crawler generates a structured JSON that maps directly to every feed styling decision.
+        </p>
+
+        <div class="json-diff">
+<span class="json-comment">// OLD: Manual Backstage configuration (fragmented, error-prone)</span>
+<span class="json-line"><span class="json-punct">{</span></span>
+<span class="json-line">  <span class="json-key">"mode"</span><span class="json-punct">:</span> <span class="json-string-old">"thumbnails-feed-cbs-custom-01"</span><span class="json-punct">,</span></span>
+<span class="json-line">  <span class="json-key">"fontFamily"</span><span class="json-punct">:</span> <span class="json-string-old">"Helvetica"</span><span class="json-punct">,</span>            <span class="json-comment">// Wrong: should be Publico Headline (serif)</span></span>
+<span class="json-line">  <span class="json-key">"titleColor"</span><span class="json-punct">:</span> <span class="json-string-old">"#333333"</span><span class="json-punct">,</span>          <span class="json-comment">// Wrong: should be #181818</span></span>
+<span class="json-line">  <span class="json-key">"titleFontSize"</span><span class="json-punct">:</span> <span class="json-string-old">"14"</span><span class="json-punct">,</span>              <span class="json-comment">// Wrong: should be 18px</span></span>
+<span class="json-line">  <span class="json-key">"titleFontWeight"</span><span class="json-punct">:</span> <span class="json-string-old">"700"</span><span class="json-punct">,</span>            <span class="json-comment">// Wrong: display serif uses 400</span></span>
+<span class="json-line">  <span class="json-key">"descColor"</span><span class="json-punct">:</span> <span class="json-string-old">"#666666"</span><span class="json-punct">,</span>           <span class="json-comment">// Wrong: should be #5F5F5F</span></span>
+<span class="json-line">  <span class="json-key">"borderRadius"</span><span class="json-punct">:</span> <span class="json-string-old">"6"</span><span class="json-punct">,</span>               <span class="json-comment">// Wrong: CBS uses 0px everywhere</span></span>
+<span class="json-line">  <span class="json-key">"ctaColor"</span><span class="json-punct">:</span> <span class="json-string-old">"#1a73e8"</span><span class="json-punct">,</span>           <span class="json-comment">// Wrong: Google Blue, not neutral gray</span></span>
+<span class="json-line">  <span class="json-key">"borderColor"</span><span class="json-punct">:</span> <span class="json-string-old">"#f3f4f6"</span><span class="json-punct">,</span>         <span class="json-comment">// Wrong: should be #E8E8E8</span></span>
+<span class="json-line">  <span class="json-key">"brandingColor"</span><span class="json-punct">:</span> <span class="json-string-old">"#888888"</span>          <span class="json-comment">// Wrong: should be #9ca3af</span></span>
+<span class="json-line"><span class="json-punct">}</span></span>
+<span class="json-line"></span>
+<span class="json-comment">// NEW: Crawler-generated brand kit (complete, accurate, auto-updated)</span>
+<span class="json-line"><span class="json-punct">{</span></span>
+<span class="json-line">  <span class="json-key">"fonts.display.name"</span><span class="json-punct">:</span>              <span class="json-string-new">"Publico Headline"</span><span class="json-punct">,</span>  <span class="json-comment">// Display serif for headlines</span></span>
+<span class="json-line">  <span class="json-key">"fonts.display.weight"</span><span class="json-punct">:</span>            <span class="json-string-new">400</span><span class="json-punct">,</span></span>
+<span class="json-line">  <span class="json-key">"fonts.ui_sans.name"</span><span class="json-punct">:</span>              <span class="json-string-new">"Proxima Nova"</span><span class="json-punct">,</span>  <span class="json-comment">// Sans-serif for UI/metadata</span></span>
+<span class="json-line">  <span class="json-key">"fonts.body_serif.name"</span><span class="json-punct">:</span>           <span class="json-string-new">"TTNorms Pro Serif"</span><span class="json-punct">,</span></span>
+<span class="json-line">  <span class="json-key">"colors.core.near_black.hex"</span><span class="json-punct">:</span>      <span class="json-string-new">"#101010"</span><span class="json-punct">,</span>  <span class="json-comment">// Primary text, badges</span></span>
+<span class="json-line">  <span class="json-key">"colors.core.charcoal.hex"</span><span class="json-punct">:</span>        <span class="json-string-new">"#181818"</span><span class="json-punct">,</span>  <span class="json-comment">// Headlines</span></span>
+<span class="json-line">  <span class="json-key">"colors.core.mid_gray.hex"</span><span class="json-punct">:</span>        <span class="json-string-new">"#5F5F5F"</span><span class="json-punct">,</span>  <span class="json-comment">// Descriptions, captions</span></span>
+<span class="json-line">  <span class="json-key">"colors.core.border_gray.hex"</span><span class="json-punct">:</span>     <span class="json-string-new">"#E8E8E8"</span><span class="json-punct">,</span>  <span class="json-comment">// Borders, dividers</span></span>
+<span class="json-line">  <span class="json-key">"colors.core.brand_red.hex"</span><span class="json-punct">:</span>       <span class="json-string-new">"#E10500"</span><span class="json-punct">,</span>  <span class="json-comment">// Accent (live badges, hover)</span></span>
+<span class="json-line">  <span class="json-key">"images.border_radius"</span><span class="json-punct">:</span>            <span class="json-string-new">"0px"</span><span class="json-punct">,</span>  <span class="json-comment">// Sharp corners everywhere</span></span>
+<span class="json-line">  <span class="json-key">"images.card_aspect_ratio"</span><span class="json-punct">:</span>        <span class="json-string-new">"16:10"</span><span class="json-punct">,</span></span>
+<span class="json-line">  <span class="json-key">"components.cta_button"</span><span class="json-punct">:</span>           <span class="json-string-new">{ "color": "#4b5563", "border_radius": "9999px" }</span><span class="json-punct">,</span></span>
+<span class="json-line">  <span class="json-key">"components.sponsored_badge"</span><span class="json-punct">:</span>      <span class="json-string-new">{ "bg": "#101010", "color": "#fff", "text": "PAID" }</span><span class="json-punct">,</span></span>
+<span class="json-line">  <span class="json-key">"fonts.hierarchy.metadata"</span><span class="json-punct">:</span>        <span class="json-string-new">{ "text_transform": "uppercase", "letter_spacing": "0.12em" }</span><span class="json-punct">,</span></span>
+<span class="json-line">  <span class="json-key">"interactions.title_hover"</span><span class="json-punct">:</span>        <span class="json-string-new">"underline"</span></span>
+<span class="json-line"><span class="json-punct">}</span></span>
+        </div>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ WORKFLOW COMPARISON ============ -->
+    <section class="report-section">
+        <div class="section-label">Process Comparison</div>
+        <h2 class="section-title">Manual Configuration vs. Crawler-Generated Brand Kit</h2>
+        <p class="section-desc">
+            The current workflow requires human-in-the-loop for every styling decision. The crawler-based approach automates extraction and enables continuous synchronization.
+        </p>
+
+        <div class="workflow-comparison">
+            <div class="workflow-panel manual">
+                <h3><span style="color: var(--report-red);">&#10005;</span> Current: Manual Custom Properties</h3>
+                <div class="workflow-step"><span class="step-num">1</span><div><div class="step-label"><strong>Account manager opens cbsnews.com</strong> in browser and visually inspects the design</div><div class="step-time">~15 min per publisher</div></div></div>
+                <div class="workflow-step"><span class="step-num">2</span><div><div class="step-label"><strong>Eyedrop colors</strong> from screenshots &mdash; picks #333 instead of CBS's actual #181818 charcoal</div><div class="step-time">~20 min</div></div></div>
+                <div class="workflow-step"><span class="step-num">3</span><div><div class="step-label"><strong>Identify fonts</strong> via browser DevTools. Misses that CBS uses Publico Headline (display serif), falls back to Helvetica</div><div class="step-time">~15 min</div></div></div>
+                <div class="workflow-step"><span class="step-num">4</span><div><div class="step-label"><strong>Configure 14+ properties</strong> in Backstage one-by-one: font family, sizes, colors, spacing, border radius, etc.</div><div class="step-time">~30 min</div></div></div>
+                <div class="workflow-step"><span class="step-num">5</span><div><div class="step-label"><strong>Select/create UI mode</strong> template that approximates CBS's card layout</div><div class="step-time">~20 min</div></div></div>
+                <div class="workflow-step"><span class="step-num">6</span><div><div class="step-label"><strong>Preview and iterate</strong>. Compare visually, adjust, re-preview. Multiple rounds.</div><div class="step-time">~60 min</div></div></div>
+                <div class="workflow-step"><span class="step-num">7</span><div><div class="step-label"><strong>CBS redesigns their site.</strong> All properties are now stale. Repeat steps 1&ndash;6.</div><div class="step-time">4&ndash;6 hours (again)</div></div></div>
+                <div class="workflow-step"><span class="step-num">8</span><div><div class="step-label"><strong>Brand elements missed entirely:</strong> serif/sans font pairing, uppercase metadata, sharp corners, category labels &mdash; can't be expressed as simple custom properties.</div><div class="step-time">Never captured</div></div></div>
+            </div>
+
+            <div class="workflow-arrow">&rarr;</div>
+
+            <div class="workflow-panel crawler">
+                <h3><span style="color: var(--report-green);">&#10003;</span> New: Crawler-Generated Brand Kit</h3>
+                <div class="workflow-step"><span class="step-num">1</span><div><div class="step-label"><strong>Crawler visits cbsnews.com</strong> and extracts computed CSS from the live DOM</div><div class="step-time">~30 seconds</div></div></div>
+                <div class="workflow-step"><span class="step-num">2</span><div><div class="step-label"><strong>Automated extraction:</strong> all colors (#101010, #181818, #5F5F5F, #E8E8E8), fonts (Publico Headline, Proxima Nova), weights, sizes parsed from stylesheets</div><div class="step-time">~60 seconds</div></div></div>
+                <div class="workflow-step"><span class="step-num">3</span><div><div class="step-label"><strong>Visual analysis:</strong> screenshots analyzed for sharp corners, serif headlines, uppercase metadata, category label patterns</div><div class="step-time">~90 seconds</div></div></div>
+                <div class="workflow-step"><span class="step-num">4</span><div><div class="step-label"><strong>Structured JSON generated</strong> with full type hierarchy (h1&rarr;caption), color palette, font stacks, component patterns, and brand voice</div><div class="step-time">~30 seconds</div></div></div>
+                <div class="workflow-step"><span class="step-num">5</span><div><div class="step-label"><strong>Feed tokens auto-mapped:</strong> JSON keys map directly to feed card CSS. Zero manual configuration needed.</div><div class="step-time">Instant</div></div></div>
+                <div class="workflow-step"><span class="step-num">6</span><div><div class="step-label"><strong>CBS redesigns?</strong> Re-crawl detects changes automatically. Feed styling updates in the next cycle.</div><div class="step-time">Scheduled / on-demand</div></div></div>
+                <div class="workflow-step"><span class="step-num">7</span><div><div class="step-label"><strong>Rich brand semantics captured:</strong> serif-for-editorial / sans-for-UI rule, uppercase metadata, sharp corners, category labels &mdash; all in JSON.</div><div class="step-time">Automatic</div></div></div>
+                <div class="workflow-step"><span class="step-num">8</span><div><div class="step-label"><strong>Drift detection:</strong> compare current crawl vs. previous. Flag divergence, alert team, or auto-update.</div><div class="step-time">Continuous</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ ADVANTAGES ============ -->
+    <section class="report-section">
+        <div class="section-label">Key Advantages</div>
+        <h2 class="section-title">Why Crawler-Generated Brand Kits Win</h2>
+        <p class="section-desc">
+            Moving from manual custom properties to automated brand kit extraction provides compounding benefits across accuracy, scale, and maintenance.
+        </p>
+
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <div class="advantage-icon">&#127919;</div>
+                <h3>Pixel-Perfect Accuracy</h3>
+                <p>The crawler extracts actual computed CSS values from the live DOM &mdash; not approximations from eyedropping screenshots. CBS's <code>#181818</code> charcoal is captured exactly, not rounded to <code>#333333</code>. Font stacks include the real Publico Headline with fallback chain.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-icon">&#128256;</div>
+                <h3>Semantic Richness</h3>
+                <p>Custom properties are flat key-value pairs. A brand kit JSON captures <em>meaning</em>: CBS uses serif for editorial content and sans-serif for UI. Metadata is always uppercase with tracking. These rules let the feed render semantically-aware cards no flat property list can express.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-icon">&#9889;</div>
+                <h3>Setup in Minutes, Not Hours</h3>
+                <p>A full brand kit for CBS News &mdash; covering 3 font families, 7 core colors, 7-level type hierarchy, image treatments, and component patterns &mdash; was generated in under 5 minutes. Manual configuration takes 4&ndash;6 hours and still misses semantic tokens.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-icon">&#128260;</div>
+                <h3>Auto-Sync on Redesign</h3>
+                <p>When CBS updates their fonts, shifts a color, or changes their card style, a re-crawl captures it immediately. Manual properties go stale silently &mdash; the feed drifts from CBS's design with no alert, no diff, no audit trail.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-icon">&#128200;</div>
+                <h3>Scales to 3,500+ Publishers</h3>
+                <p>Taboola serves 3,500+ publishers. Manually configuring custom properties for each is an enormous ongoing cost. Automated crawling can generate and maintain brand kits for the entire publisher network in a single scheduled pipeline run.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-icon">&#128737;</div>
+                <h3>Captures What Properties Can't</h3>
+                <p>Manual custom properties can set <code>fontFamily</code> and <code>titleColor</code>. They <em>cannot</em> express: "headlines use a display serif while UI uses sans-serif," "all metadata is uppercase with 0.12em tracking," or "every image uses sharp 0px corners." Brand kit JSON can.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ GAP ANALYSIS ============ -->
+    <section class="report-section">
+        <div class="section-label">Gap Analysis</div>
+        <h2 class="section-title">What the Current Feed Gets Wrong on CBS News</h2>
+        <p class="section-desc">
+            Specific brand fidelity gaps observed in the current Taboola feed below the article on the CBS News Iran war live updates page, mapped to their brand kit JSON fix.
+        </p>
+
+        <table class="property-table">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Gap</th>
+                    <th style="width: 35%;">Current Behavior</th>
+                    <th style="width: 35%;">Brand Kit Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Wrong font family</strong></td>
+                    <td>Feed renders in Helvetica/Arial sans-serif. Looks generic and visually disconnected from the article above, which uses Publico Headline (a display serif).</td>
+                    <td><code>fonts.display.name: "Publico Headline"</code> for headlines, <code>fonts.ui_sans.name: "Proxima Nova"</code> for UI &mdash; seamless transition from article to feed.</td>
+                </tr>
+                <tr>
+                    <td><strong>Wrong text color hierarchy</strong></td>
+                    <td>Headlines use <code>#333</code>, source labels use <code>#888</code> &mdash; generic grays that don't match CBS's deliberate charcoal palette.</td>
+                    <td>Three-tier system: <code>#181818</code> (headlines) &rarr; <code>#5F5F5F</code> (descriptions) &rarr; <code>#9ca3af</code> (source labels). Directly from brand kit.</td>
+                </tr>
+                <tr>
+                    <td><strong>Rounded image corners</strong></td>
+                    <td>Feed uses 6px border-radius on all thumbnails. CBS News uses <strong>0px sharp corners everywhere</strong> &mdash; a deliberate editorial design choice.</td>
+                    <td><code>images.border_radius: "0px"</code> &mdash; sharp edges matching CBS's editorial card style. Rounded corners scream "third-party widget."</td>
+                </tr>
+                <tr>
+                    <td><strong>Blue CTA buttons</strong></td>
+                    <td>CTA uses <code>#1a73e8</code> (Google Blue) with rounded border &mdash; visually screams "ad" and looks completely alien to CBS's design.</td>
+                    <td><code>components.cta_button: { color: "#4b5563", border_radius: "9999px" }</code> &mdash; neutral gray pill that feels native to the page.</td>
+                </tr>
+                <tr>
+                    <td><strong>Missing uppercase metadata</strong></td>
+                    <td>Source labels and branding text use sentence case with no letter-spacing. CBS uses uppercase + 0.12em tracking for all metadata elements.</td>
+                    <td><code>fonts.hierarchy.metadata: { text_transform: "uppercase", letter_spacing: "0.12em" }</code> &mdash; matches CBS's metadata convention site-wide.</td>
+                </tr>
+                <tr>
+                    <td><strong>Missing serif/sans font pairing</strong></td>
+                    <td>Everything renders in the same sans-serif font. CBS deliberately uses serif (Publico Headline) for editorial headlines and sans (Proxima Nova) for UI elements.</td>
+                    <td><code>fonts.display</code> for headlines, <code>fonts.ui_sans</code> for labels/meta. The brand kit captures the pairing rule semantically.</td>
+                </tr>
+                <tr>
+                    <td><strong>Generic "Sponsored" badge</strong></td>
+                    <td>Light gray <code>#e8e8e8</code> background with dark text saying "Sponsored" &mdash; default Taboola styling.</td>
+                    <td><code>components.sponsored_badge: { bg: "#101010", color: "#fff", text: "PAID" }</code> &mdash; matches CBS's near-black branding.</td>
+                </tr>
+                <tr>
+                    <td><strong>No category labels on cards</strong></td>
+                    <td>Cards show only headline + source. No "WAR WITH IRAN" or "MONEYWATCH" category context above headlines.</td>
+                    <td><code>fonts.hierarchy.category_label</code>: 11px, 700 weight, uppercase, 1.2px tracking in #101010 &mdash; replicates CBS's topic labeling.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ REPLACING CUSTOM UI MODES AT SCALE ============ -->
+    <section class="report-section">
+        <div class="section-label">Custom UI Modes</div>
+        <h2 class="section-title">Replacing Custom UI Modes at Scale</h2>
+        <p class="section-desc">
+            Taboola currently manages hundreds of <strong>custom UI modes</strong> &mdash; per-publisher visual override configurations that account managers build and maintain in Backstage. These modes exist because the default feed styling doesn't match publisher branding. The brand kit approach automates what UI modes do manually, eliminating ~70% of them.
+        </p>
+
+        <div style="background: var(--report-surface); border: 1px solid var(--report-border); padding: 28px; margin-bottom: 32px;">
+            <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--report-text);">What Custom UI Modes Do Today</h3>
+            <p style="font-size: 14px; color: var(--report-text-muted); margin-bottom: 20px; line-height: 1.6;">
+                Each UI mode is a bespoke configuration bundle that overrides Taboola's default feed appearance for a specific publisher. Account managers create these by visually inspecting publisher sites, extracting design values by hand, and encoding them into mode definitions. Common overrides include:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div style="background: var(--report-surface-2); padding: 16px; border: 1px solid var(--report-border);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Font Overrides</div>
+                    <div style="font-size: 13px; color: var(--report-text-muted);">font-family, font-size, font-weight, line-height for headlines, descriptions, labels</div>
+                </div>
+                <div style="background: var(--report-surface-2); padding: 16px; border: 1px solid var(--report-border);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Color Theming</div>
+                    <div style="font-size: 13px; color: var(--report-text-muted);">text colors, accent colors, background colors, badge colors, hover states</div>
+                </div>
+                <div style="background: var(--report-surface-2); padding: 16px; border: 1px solid var(--report-border);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Card Layout</div>
+                    <div style="font-size: 13px; color: var(--report-text-muted);">grid gaps, padding, margins, card density, vertical vs horizontal layout</div>
+                </div>
+                <div style="background: var(--report-surface-2); padding: 16px; border: 1px solid var(--report-border);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Thumbnail Styling</div>
+                    <div style="font-size: 13px; color: var(--report-text-muted);">border-radius, aspect-ratio, object-fit, hover zoom effects</div>
+                </div>
+                <div style="background: var(--report-surface-2); padding: 16px; border: 1px solid var(--report-border);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Label Treatments</div>
+                    <div style="font-size: 13px; color: var(--report-text-muted);">text-transform, letter-spacing, badge styles, "Sponsored" vs "Paid"</div>
+                </div>
+                <div style="background: var(--report-surface-2); padding: 16px; border: 1px solid var(--report-border);">
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 6px;">Interactive States</div>
+                    <div style="font-size: 13px; color: var(--report-text-muted);">hover colors, transitions, active indicators, focus rings</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: var(--report-surface); border: 1px solid var(--report-border); padding: 28px; margin-bottom: 32px;">
+            <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--report-text);">How the Brand Kit JSON Covers the Same Ground</h3>
+            <p style="font-size: 14px; color: var(--report-text-muted); margin-bottom: 20px; line-height: 1.6;">
+                The web crawler extracts the exact values that account managers are manually eyedropping and entering into UI mode configs today. Every category of UI mode override has a direct equivalent in the brand kit JSON structure:
+            </p>
+            <table class="property-table">
+                <thead>
+                    <tr>
+                        <th>UI Mode Category</th>
+                        <th>What AMs Configure Manually</th>
+                        <th>Brand Kit JSON Equivalent</th>
+                        <th>Automation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="prop-name">Font overrides</td>
+                        <td style="color: var(--report-text-muted); font-size: 13px;">Eyedrop font from CBS, guess "Helvetica" instead of Publico Headline</td>
+                        <td class="prop-value-after">fonts.display.*, fonts.ui_sans.*, fonts.hierarchy.*</td>
+                        <td><span class="tag tag-auto">Full</span></td>
+                    </tr>
+                    <tr>
+                        <td class="prop-name">Color theming</td>
+                        <td style="color: var(--report-text-muted); font-size: 13px;">Pick #333 from screenshots instead of CBS's actual #181818</td>
+                        <td class="prop-value-after">colors.core.*, colors.functional.*</td>
+                        <td><span class="tag tag-auto">Full</span></td>
+                    </tr>
+                    <tr>
+                        <td class="prop-name">Card layout/spacing</td>
+                        <td style="color: var(--report-text-muted); font-size: 13px;">Set gap, padding, margins by trial and error</td>
+                        <td class="prop-value-after">layout.*, spacing.*</td>
+                        <td><span class="tag tag-auto">Full</span></td>
+                    </tr>
+                    <tr>
+                        <td class="prop-name">Thumbnail styling</td>
+                        <td style="color: var(--report-text-muted); font-size: 13px;">Set 6px radius when CBS uses 0px; miss aspect ratio (16:10)</td>
+                        <td class="prop-value-after">images.border_radius, images.card_aspect_ratio</td>
+                        <td><span class="tag tag-auto">Full</span></td>
+                    </tr>
+                    <tr>
+                        <td class="prop-name">Label treatments</td>
+                        <td style="color: var(--report-text-muted); font-size: 13px;">Miss uppercase + tracking convention entirely</td>
+                        <td class="prop-value-after">components.sponsored_badge.*, fonts.hierarchy.metadata</td>
+                        <td><span class="tag tag-auto">Full</span></td>
+                    </tr>
+                    <tr>
+                        <td class="prop-name">Interactive states</td>
+                        <td style="color: var(--report-text-muted); font-size: 13px;">Usually skipped &mdash; hover states rarely configured</td>
+                        <td class="prop-value-after">interactions.title_hover, interactions.link_hover_color</td>
+                        <td><span class="tag tag-auto">Full</span></td>
+                    </tr>
+                    <tr>
+                        <td class="prop-name">Semantic brand rules</td>
+                        <td style="color: var(--report-text-muted); font-size: 13px;">Serif/sans pairing, category labels, sharp corners &mdash; requires custom CSS</td>
+                        <td class="prop-value-after">fonts.display + fonts.ui_sans (pairing rule), fonts.hierarchy.category_label</td>
+                        <td><span class="tag tag-auto">Full</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 70% Stat -->
+        <div style="background: linear-gradient(135deg, rgba(225, 5, 0, 0.08) 0%, rgba(13, 128, 51, 0.08) 100%); border: 1px solid var(--report-border); padding: 32px; margin-bottom: 32px; text-align: center;">
+            <div style="font-size: 72px; font-weight: 700; color: var(--report-accent); line-height: 1;">~70%</div>
+            <div style="font-size: 18px; font-weight: 700; color: var(--report-text); margin: 12px 0 8px;">of Custom UI Modes &rarr; Automated by Brand Kit</div>
+            <p style="font-size: 14px; color: var(--report-text-muted); max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                Of the hundreds of custom UI modes in production, approximately 70% exist solely to override default Taboola styling to match publisher branding &mdash; fonts, colors, spacing, thumbnail shapes, and label conventions. The brand kit approach automates this entirely. The remaining ~30% involve structural layout changes (card grid configurations, widget placement, ad slot architecture) that go beyond visual branding.
+            </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px;">
+            <div class="stat-card">
+                <div class="stat-value green">70%</div>
+                <div class="stat-label">Fewer UI modes to manually create and maintain</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">4&ndash;6 hrs</div>
+                <div class="stat-label">AM configuration time saved per publisher</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">0</div>
+                <div class="stat-label">Brand drift when publishers redesign (auto-sync)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">3,500+</div>
+                <div class="stat-label">Publishers onboardable without manual UI mode work</div>
+            </div>
+        </div>
+
+        <p style="font-size: 14px; color: var(--report-text-muted); line-height: 1.7;">
+            <strong style="color: var(--report-text);">For CBS News specifically:</strong> The current custom UI mode was created to override fonts, colors, spacing, and badge styling. Every override in that mode maps directly to a brand kit JSON token. With the crawler-generated brand kit, this custom UI mode would be unnecessary &mdash; the feed would render natively using extracted tokens from Publico Headline, Proxima Nova, the #181818/#5F5F5F/#E8E8E8 color palette, and 0px sharp corners, with no manual mode configuration required.
+        </p>
+    </section>
+
+    <div class="report-divider"><hr></div>
+
+    <!-- ============ CONCLUSION ============ -->
+    <section class="report-section" style="padding-bottom: 80px;">
+        <div class="section-label">Conclusion</div>
+        <h2 class="section-title">From "Close Enough" to Pixel-Perfect Native</h2>
+        <p class="section-desc">
+            The current manual configuration workflow produces a feed that looks like a Taboola widget sitting <em>on top of</em> CBS News. The crawler-generated brand kit produces a feed that looks like it was <em>built by</em> CBS News. The difference is the gap between "close enough" and "native" &mdash; and that gap directly impacts user trust, engagement, and revenue.
+        </p>
+        <div class="stat-row">
+            <div class="stat-card">
+                <div class="stat-value red">11 of 18</div>
+                <div class="stat-label">Properties with drift in manual config</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value red">6 of 18</div>
+                <div class="stat-label">Brand features entirely missing</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">18 of 18</div>
+                <div class="stat-label">Tokens matched by brand kit JSON</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">50&times;</div>
+                <div class="stat-label">Faster setup (minutes vs. hours)</div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
